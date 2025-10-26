@@ -175,15 +175,7 @@ export default function Projects() {
   const contentRef = useScrollAnimation(0.2);
 
   return (
-    <section id="projects" className="min-h-screen py-20 px-6 bg-cyber-black relative overflow-hidden">
-      {/* Animated background elements matching About page */}
-      <div 
-        className="absolute top-1/4 right-10 w-96 h-96 bg-neon-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-[0.02] animate-pulse-slow"
-      ></div>
-      <div 
-        className="absolute bottom-1/4 left-10 w-96 h-96 bg-neon-blue-600 rounded-full mix-blend-multiply filter blur-3xl opacity-[0.02] animate-pulse-slow"
-      ></div>
-      
+    <section id="projects" className="min-h-screen py-20 px-6 relative overflow-hidden cyber-grid">
       {/* Floating tech symbols */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {['{ }', '</>', '[ ]', '( )', '</>'].map((symbol, i) => (
@@ -385,6 +377,7 @@ export default function Projects() {
                       <img
                         src={currentProject.images[activeImageIndex]}
                         alt={`${currentProject.title} screenshot ${activeImageIndex + 1}`}
+                        loading="lazy"
                         className={`w-full h-auto object-cover transition-all duration-300 ${
                           isImageTransitioning
                             ? imageSlideDirection === 'left'

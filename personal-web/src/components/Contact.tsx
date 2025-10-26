@@ -49,11 +49,7 @@ function Contact() {
   ];
 
   return (
-    <section id="contact" className="min-h-screen py-20 px-6 relative overflow-hidden bg-cyber-black">
-      {/* Animated background elements */}
-      <div className="absolute top-1/4 right-10 w-96 h-96 bg-neon-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-[0.02] animate-pulse-slow"></div>
-      <div className="absolute bottom-1/4 left-10 w-96 h-96 bg-neon-blue-600 rounded-full mix-blend-multiply filter blur-3xl opacity-[0.02] animate-pulse-slow"></div>
-      
+    <section id="contact" className="min-h-screen py-20 px-6 relative overflow-hidden cyber-grid">
       {/* Floating code symbols */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {['@', '#', '$', '%', '&'].map((symbol, i) => (

@@ -46,25 +46,11 @@ function Hero() {
     <section 
       ref={sectionRef}
       id="home" 
-      className="min-h-screen flex items-center justify-center relative overflow-hidden cyber-grid"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden cyber-grid py-16 sm:py-20"
     >
-      {/* Animated background circles with parallax - lower opacity */}
-      <div 
-        className="absolute top-20 left-20 w-72 h-72 bg-neon-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-[0.02] animate-pulse-slow transition-transform duration-300 ease-out"
-        style={{
-          transform: `translate(${mousePosition.x * 30}px, ${mousePosition.y * 30}px)`
-        }}
-      ></div>
-      <div 
-        className="absolute bottom-20 right-20 w-72 h-72 bg-neon-blue-600 rounded-full mix-blend-multiply filter blur-xl opacity-[0.02] animate-pulse-slow animation-delay-2000 transition-transform duration-300 ease-out"
-        style={{
-          transform: `translate(${mousePosition.x * -20}px, ${mousePosition.y * -20}px)`
-        }}
-      ></div>
-      
       {/* Floating particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(15)].map((_, i) => (
+        {[...Array(8)].map((_, i) => (
           <div
             key={i}
             className="absolute w-1 h-1 bg-neon-blue-500 rounded-full opacity-50"
@@ -73,8 +59,7 @@ function Hero() {
               top: `${Math.random() * 100}%`,
               animation: `float ${5 + Math.random() * 10}s linear infinite`,
               animationDelay: `${Math.random() * 5}s`,
-              transform: `translate(${mousePosition.x * (i * 2)}px, ${mousePosition.y * (i * 2)}px)`,
-              transition: 'transform 0.3s ease-out'
+              willChange: 'transform'
             }}
           />
         ))}
@@ -82,15 +67,15 @@ function Hero() {
       
       <div 
         ref={contentRef as React.RefObject<HTMLDivElement>}
-        className={`relative z-10 px-4 max-w-6xl mx-auto transition-all duration-1000 ${
+        className={`relative z-10 px-4 max-w-6xl mx-auto w-full transition-all duration-1000 ${
           contentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}
       >
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
           {/* Photo Section */}
           <div className="flex justify-center order-1 md:order-2">
             <div 
-              className="relative transition-transform duration-300 ease-out w-64 h-64 md:w-80 md:h-80"
+              className="relative transition-transform duration-300 ease-out w-48 h-48 sm:w-56 sm:h-56 md:w-80 md:h-80"
               style={{
                 transform: `perspective(1000px) rotateY(${mousePosition.x * 10}deg) rotateX(${mousePosition.y * -10}deg)`
               }}
@@ -117,10 +102,11 @@ function Hero() {
                 }}
               ></div>
               
-              <div className={`relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-neon-blue-500 shadow-neon transition-all duration-500 ${isHovering ? 'scale-105 shadow-neon-lg' : 'scale-100'}`}>
+              <div className={`relative w-48 h-48 sm:w-56 sm:h-56 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-neon-blue-500 shadow-neon transition-all duration-500 ${isHovering ? 'scale-105 shadow-neon-lg' : 'scale-100'}`}>
                 <img 
                   src="/Foto_Personal.jpg" 
                   alt="Profile" 
+                  loading="eager"
                   className={`w-full h-full object-cover transition-transform duration-500 ${isHovering ? 'scale-110' : 'scale-100'}`}
                   style={{ objectFit: 'cover', objectPosition: 'center' }}
                 />
@@ -132,24 +118,17 @@ function Hero() {
               
               {/* Floating code brackets with 3D effect */}
               <div 
-                className="absolute -top-2 -left-2 text-2xl md:text-4xl neon-text animate-pulse font-mono transition-transform duration-300"
-                style={{ transform: `translate(${mousePosition.x * -15}px, ${mousePosition.y * -15}px)` }}
+                className="absolute -top-1 -left-1 sm:-top-2 sm:-left-2 text-xl sm:text-2xl md:text-4xl neon-text animate-pulse font-mono"
               >&lt;/&gt;</div>
               <div 
-                className="absolute -bottom-2 -right-2 text-2xl md:text-4xl neon-text animate-pulse font-mono transition-transform duration-300" 
-                style={{ 
-                  animationDelay: '1s',
-                  transform: `translate(${mousePosition.x * 15}px, ${mousePosition.y * 15}px)`
-                }}
+                className="absolute -bottom-1 -right-1 sm:-bottom-2 sm:-right-2 text-xl sm:text-2xl md:text-4xl neon-text animate-pulse font-mono" 
+                style={{ animationDelay: '1s' }}
               >{ }</div>
               
               {/* Binary code streams with flow animation - hidden on mobile */}
               <div 
-                className="absolute -right-16 top-10 opacity-30 text-neon-blue-500 text-xs font-mono transition-all duration-300 hidden md:block"
-                style={{ 
-                  animation: 'float 3s ease-in-out infinite',
-                  transform: `translateY(${mousePosition.y * 20}px)`
-                }}
+                className="absolute -right-16 top-10 opacity-30 text-neon-blue-500 text-xs font-mono hidden md:block"
+                style={{ animation: 'float 3s ease-in-out infinite' }}
               >
                 <div className="animate-pulse">01010011</div>
                 <div className="animate-pulse" style={{ animationDelay: '0.2s' }}>01001111</div>
@@ -157,12 +136,8 @@ function Hero() {
               </div>
               
               <div 
-                className="absolute -left-16 bottom-10 opacity-30 text-neon-blue-500 text-xs font-mono transition-all duration-300 hidden md:block" 
-                style={{ 
-                  animation: 'float 3s ease-in-out infinite',
-                  animationDelay: '1.5s',
-                  transform: `translateY(${mousePosition.y * -20}px)`
-                }}
+                className="absolute -left-16 bottom-10 opacity-30 text-neon-blue-500 text-xs font-mono hidden md:block" 
+                style={{ animation: 'float 3s ease-in-out infinite', animationDelay: '1.5s' }}
               >
                 <div className="animate-pulse">01001000</div>
                 <div className="animate-pulse" style={{ animationDelay: '0.2s' }}>01010111</div>
@@ -173,21 +148,21 @@ function Hero() {
 
           {/* Text Section */}
           <div className="text-center md:text-left order-2 md:order-1">
-            <h1 className="text-5xl md:text-7xl font-bold mb-4">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-3 sm:mb-4">
               <span className="text-white">Greetings, I'm </span>
               <span className="neon-text">Alexander Christhian</span>
             </h1>
-            <h2 className="text-2xl md:text-4xl text-gray-300 mb-6">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-gray-300 mb-4 sm:mb-6">
               Computer Engineering Student
             </h2>
             
             {/* Animated switching text */}
-            <div className="mb-8 min-h-[80px] md:h-20 flex items-center justify-center md:justify-start">
+            <div className="mb-6 sm:mb-8 min-h-[60px] sm:min-h-[80px] md:min-h-[80px] flex items-center justify-center md:justify-start">
               <div className="relative flex flex-wrap items-center justify-center md:justify-start gap-x-2">
-                <span className="text-base sm:text-lg md:text-2xl text-gray-400">Passionate about</span>
+                <span className="text-sm sm:text-base md:text-lg lg:text-2xl text-gray-400">Passionate about</span>
                 <span 
                   className={`
-                    text-base sm:text-lg md:text-2xl font-bold
+                    text-sm sm:text-base md:text-lg lg:text-2xl font-bold
                     neon-text
                     transition-all duration-500 transform inline-block
                     ${isAnimating 
@@ -215,7 +190,7 @@ function Hero() {
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-4 mt-8">
+            <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-3 sm:gap-4 mt-6 sm:mt-8">
               <a 
                 href="#projects" 
                 className="group px-6 sm:px-8 py-3 bg-neon-blue-500 text-black font-semibold rounded-lg hover:shadow-neon transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 relative overflow-hidden text-center"

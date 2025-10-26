@@ -1,9 +1,8 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 function About() {
   const [activeCategory, setActiveCategory] = useState("Programming Languages");
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [hoveredTech, setHoveredTech] = useState<string | null>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   const { ref: titleRef, isVisible: titleVisible } = useScrollAnimation(0.3, false);
@@ -11,21 +10,6 @@ function About() {
   const { ref: categoriesRef, isVisible: categoriesVisible } = useScrollAnimation(0.2, false);
   const { ref: tabsRef, isVisible: tabsVisible } = useScrollAnimation(0.2, false);
   const { ref: techGridRef, isVisible: techGridVisible } = useScrollAnimation(0.1, false);
-
-  // Mouse tracking for parallax effect
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (sectionRef.current) {
-        const rect = sectionRef.current.getBoundingClientRect();
-        const x = (e.clientX - rect.left - rect.width / 2) / rect.width;
-        const y = (e.clientY - rect.top - rect.height / 2) / rect.height;
-        setMousePosition({ x, y });
-      }
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
   
   const techStack = {
     "Programming Languages": [
@@ -83,20 +67,6 @@ function About() {
       id="about" 
       className="min-h-screen py-20 px-4 relative overflow-hidden cyber-grid"
     >
-      {/* Animated background elements with parallax - lower opacity */}
-      <div 
-        className="absolute top-1/4 right-10 w-96 h-96 bg-neon-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-[0.02] animate-pulse-slow transition-transform duration-500 ease-out"
-        style={{
-          transform: `translate(${mousePosition.x * 40}px, ${mousePosition.y * 40}px)`
-        }}
-      ></div>
-      <div 
-        className="absolute bottom-1/4 left-10 w-96 h-96 bg-neon-blue-600 rounded-full mix-blend-multiply filter blur-3xl opacity-[0.02] animate-pulse-slow transition-transform duration-500 ease-out"
-        style={{
-          transform: `translate(${mousePosition.x * -30}px, ${mousePosition.y * -30}px)`
-        }}
-      ></div>
-      
       {/* Floating tech icons in background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {['{ }', '</>', '[ ]', '( )', '</>'].map((symbol, i) => (
@@ -108,8 +78,7 @@ function About() {
               top: `${10 + (i % 3) * 30}%`,
               animation: `float ${8 + i * 2}s ease-in-out infinite`,
               animationDelay: `${i * 0.5}s`,
-              transform: `translate(${mousePosition.x * (i * 3)}px, ${mousePosition.y * (i * 3)}px)`,
-              transition: 'transform 0.5s ease-out'
+              willChange: 'transform'
             }}
           >
             {symbol}
@@ -126,18 +95,12 @@ function About() {
           }`}
         >
           <h2 
-            className="text-5xl md:text-6xl font-bold mb-4 transition-transform duration-300"
-            style={{
-              transform: `perspective(500px) rotateX(${mousePosition.y * 5}deg)`
-            }}
+            className="text-5xl md:text-6xl font-bold mb-4"
           >
             <span className="neon-text inline-block hover:scale-110 transition-transform duration-300">About Me</span>
           </h2>
           <div 
-            className="h-1 bg-gradient-to-r from-transparent via-neon-blue-500 to-transparent mx-auto transition-all duration-300"
-            style={{
-              width: `${Math.min(300, 128 + Math.abs(mousePosition.x) * 100)}px`
-            }}
+            className="h-1 bg-gradient-to-r from-transparent via-neon-blue-500 to-transparent mx-auto w-32 md:w-64"
           ></div>
         </div>
         
@@ -214,10 +177,7 @@ function About() {
                   key={tech.name}
                   className="group relative flex flex-col items-center gap-2 sm:gap-3 p-3 sm:p-4 md:p-5 rounded-xl sm:rounded-2xl bg-black/40 backdrop-blur-md border-2 border-neon-blue-500/30 hover:border-neon-blue-500/80 hover:bg-black/60 transition-all duration-500 cursor-pointer overflow-hidden"
                   style={{
-                    animation: `fadeInUp 0.5s ease-out ${index * 0.05}s backwards`,
-                    transform: hoveredTech === tech.name 
-                      ? `perspective(1000px) translateZ(20px) rotateX(${mousePosition.y * 10}deg) rotateY(${mousePosition.x * 10}deg)` 
-                      : 'perspective(1000px) translateZ(0px) rotateX(0deg) rotateY(0deg)'
+                    animation: `fadeInUp 0.5s ease-out ${index * 0.05}s backwards`
                   }}
                   title={tech.name}
                   onMouseEnter={() => setHoveredTech(tech.name)}
@@ -241,6 +201,7 @@ function About() {
                     <img
                       src={tech.icon}
                       alt={tech.name}
+                      loading="lazy"
                       className="w-full h-full object-contain group-hover:scale-110 sm:group-hover:scale-125 group-hover:rotate-6 transition-all duration-500 drop-shadow-lg group-hover:drop-shadow-[0_0_20px_rgba(0,163,255,0.9)]"
                       style={{
                         filter: hoveredTech === tech.name ? 'brightness(1.2)' : 'brightness(1)'

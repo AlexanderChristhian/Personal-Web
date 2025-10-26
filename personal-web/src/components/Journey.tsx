@@ -12,7 +12,6 @@ interface JourneyItem {
 }
 
 const Journey = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const sectionRef = useRef<HTMLElement>(null);
   const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation(0.3, false);
   const [visibleItems, setVisibleItems] = useState<number[]>([]);
@@ -40,21 +39,6 @@ const Journey = () => {
     });
 
     return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (sectionRef.current) {
-        const rect = sectionRef.current.getBoundingClientRect();
-        const x = (e.clientX - rect.left - rect.width / 2) / rect.width;
-        const y = (e.clientY - rect.top - rect.height / 2) / rect.height;
-        setMousePosition({ x, y });
-      }
-    };
-
-    const section = sectionRef.current;
-    section?.addEventListener('mousemove', handleMouseMove);
-    return () => section?.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
   const journeyData: JourneyItem[] = [
@@ -126,20 +110,6 @@ const Journey = () => {
       id="journey" 
       className="min-h-screen py-20 px-4 relative overflow-hidden cyber-grid"
     >
-      {/* Animated background circles with parallax - lower opacity */}
-      <div 
-        className="absolute top-1/4 right-10 w-96 h-96 bg-neon-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-[0.02] animate-pulse-slow transition-transform duration-500 ease-out"
-        style={{
-          transform: `translate(${mousePosition.x * 40}px, ${mousePosition.y * 40}px)`
-        }}
-      ></div>
-      <div 
-        className="absolute bottom-1/4 left-10 w-96 h-96 bg-neon-blue-600 rounded-full mix-blend-multiply filter blur-3xl opacity-[0.02] animate-pulse-slow transition-transform duration-500 ease-out"
-        style={{
-          transform: `translate(${mousePosition.x * -30}px, ${mousePosition.y * -30}px)`
-        }}
-      ></div>
-
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Header */}
         <div 
@@ -215,6 +185,7 @@ const Journey = () => {
                     <img 
                       src={item.image} 
                       alt={item.organization}
+                      loading="lazy"
                       className="w-full h-48 sm:h-full object-cover"
                     />
                   </div>
