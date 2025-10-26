@@ -158,46 +158,44 @@ const Journey = () => {
 
         {/* Timeline */}
         <div className="relative">
-          {/* Vertical line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-neon-blue-500 via-neon-blue-400 to-neon-blue-500 opacity-30"></div>
+          {/* Vertical line - hidden on mobile */}
+          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-neon-blue-500 via-neon-blue-400 to-neon-blue-500 opacity-30 hidden md:block"></div>
           
-          {/* Glowing dot at top */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 w-4 h-4 bg-neon-blue-400 rounded-full shadow-neon animate-pulse-slow"></div>
+          {/* Glowing dot at top - hidden on mobile */}
+          <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 w-4 h-4 bg-neon-blue-400 rounded-full shadow-neon animate-pulse-slow hidden md:block"></div>
           
-          {/* Glowing dot at bottom */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 -bottom-4 w-4 h-4 bg-neon-blue-400 rounded-full shadow-neon animate-pulse-slow"></div>
+          {/* Glowing dot at bottom - hidden on mobile */}
+          <div className="absolute left-1/2 transform -translate-x-1/2 -bottom-4 w-4 h-4 bg-neon-blue-400 rounded-full shadow-neon animate-pulse-slow hidden md:block"></div>
 
           {/* Journey items */}
-          <div className="space-y-12">
+          <div className="space-y-8 md:space-y-12">
             {journeyData.map((item, index) => (
               <div 
                 key={item.id}
                 ref={(el) => { itemRefs.current[index] = el; }}
-                className={`relative flex items-stretch transition-all duration-1000 ${
-                  index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'
+                className={`relative flex flex-col md:flex-row items-stretch transition-all duration-1000 ${
+                  index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
                 } group ${
                   visibleItems.includes(index)
                     ? 'opacity-100 translate-x-0'
-                    : index % 2 === 0
-                    ? 'opacity-0 -translate-x-20'
-                    : 'opacity-0 translate-x-20'
+                    : 'opacity-0'
                 }`}
               >
                 {/* Content card */}
-                <div className={`w-5/12 ${index % 2 === 0 ? 'pr-12 text-right' : 'pl-12 text-left'} flex items-center`}>
-                  <div className="bg-cyber-black-100/50 backdrop-blur-sm border border-neon-blue-500/30 rounded-lg p-6 hover:border-neon-blue-500 transition-all duration-300 hover:shadow-neon group-hover:scale-105 w-full">
-                    <div className={`inline-block px-3 py-1 rounded-full text-sm font-semibold mb-3 bg-gradient-to-r ${getTypeColor(item.type)} text-white`}>
+                <div className={`w-full md:w-5/12 ${index % 2 === 0 ? 'md:pr-12 md:text-right' : 'md:pl-12 md:text-left'} flex items-center mb-4 md:mb-0`}>
+                  <div className="bg-cyber-black-100/50 backdrop-blur-sm border border-neon-blue-500/30 rounded-lg p-4 sm:p-6 hover:border-neon-blue-500 transition-all duration-300 hover:shadow-neon group-hover:scale-105 w-full">
+                    <div className={`inline-block px-3 py-1 rounded-full text-xs sm:text-sm font-semibold mb-3 bg-gradient-to-r ${getTypeColor(item.type)} text-white`}>
                       {item.year}
                     </div>
-                    <h3 className="text-2xl font-bold text-neon-blue-400 mb-2">
+                    <h3 className="text-xl sm:text-2xl font-bold text-neon-blue-400 mb-2">
                       {item.title}
                     </h3>
-                    <p className="text-lg text-gray-300 mb-3 font-semibold">
+                    <p className="text-base sm:text-lg text-gray-300 mb-3 font-semibold">
                       {item.organization}
                     </p>
-                    <ul className={`text-gray-400 leading-relaxed space-y-2 ${index % 2 === 0 ? 'text-right' : 'text-left'}`}>
+                    <ul className={`text-sm sm:text-base text-gray-400 leading-relaxed space-y-2 ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}>
                       {item.description.map((point, idx) => (
-                        <li key={idx} className={`flex items-start gap-2 ${index % 2 === 0 ? 'flex-row-reverse' : 'flex-row'}`}>
+                        <li key={idx} className={`flex items-start gap-2 ${index % 2 === 0 ? 'md:flex-row-reverse' : 'md:flex-row'}`}>
                           <span className="text-neon-blue-400 mt-1">•</span>
                           <span className="flex-1">{point}</span>
                         </li>
@@ -206,18 +204,18 @@ const Journey = () => {
                   </div>
                 </div>
 
-                {/* Center node */}
-                <div className="w-2/12 flex justify-center items-center relative z-10">
+                {/* Center node - hidden on mobile */}
+                <div className="hidden md:flex w-2/12 justify-center items-center relative z-10">
                   <div className="w-6 h-6 rounded-full bg-neon-blue-500 shadow-neon group-hover:scale-125 transition-transform duration-300 group-hover:shadow-neon-lg"></div>
                 </div>
 
                 {/* Image on the other side */}
-                <div className={`w-5/12 ${index % 2 === 0 ? 'pl-12' : 'pr-12'} flex ${index % 2 === 0 ? 'justify-start' : 'justify-end'}`}>
-                  <div className="rounded-lg overflow-hidden border-2 border-neon-blue-500/50 shadow-neon group-hover:border-neon-blue-500 group-hover:shadow-neon-lg transition-all duration-300 group-hover:scale-105">
+                <div className={`w-full md:w-5/12 ${index % 2 === 0 ? 'md:pl-12' : 'md:pr-12'} flex ${index % 2 === 0 ? 'md:justify-start' : 'md:justify-end'}`}>
+                  <div className="rounded-lg overflow-hidden border-2 border-neon-blue-500/50 shadow-neon group-hover:border-neon-blue-500 group-hover:shadow-neon-lg transition-all duration-300 group-hover:scale-105 w-full">
                     <img 
                       src={item.image} 
                       alt={item.organization}
-                      className="w-full h-full object-cover"
+                      className="w-full h-48 sm:h-full object-cover"
                     />
                   </div>
                 </div>

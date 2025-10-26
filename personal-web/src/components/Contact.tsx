@@ -75,14 +75,14 @@ function Contact() {
       <div className="max-w-6xl mx-auto relative z-10">
         <h2 
           ref={titleRef as React.RefObject<HTMLHeadingElement>}
-          className={`text-5xl md:text-6xl font-bold mb-8 text-center transition-all duration-1000 ${
+          className={`text-4xl sm:text-5xl md:text-6xl font-bold mb-6 sm:mb-8 text-center transition-all duration-1000 ${
             titleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
         >
           <span className="neon-text">Get In Touch</span>
         </h2>
 
-        <p className={`text-center text-gray-400 text-lg mb-16 max-w-2xl mx-auto transition-all duration-1000 delay-200 ${
+        <p className={`text-center text-gray-400 text-base sm:text-lg mb-12 sm:mb-16 max-w-2xl mx-auto px-4 transition-all duration-1000 delay-200 ${
           titleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
           I'm always interested in hearing about new projects and opportunities. Feel free to reach out!
@@ -91,7 +91,7 @@ function Contact() {
         {/* Contact Cards */}
         <div 
           ref={cardsRef as React.RefObject<HTMLDivElement>}
-          className="grid md:grid-cols-3 gap-8"
+          className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 px-4"
         >
           {contacts.map((contact, index) => (
             <a
@@ -110,34 +110,36 @@ function Contact() {
               <div className={`absolute -inset-1 bg-gradient-to-r ${contact.color} rounded-2xl blur-lg opacity-0 group-hover:opacity-75 transition-all duration-500`}></div>
               
               {/* Card content */}
-              <div className={`relative bg-gray-900/90 backdrop-blur-sm rounded-2xl p-8 border-2 border-gray-800 group-hover:border-neon-blue transition-all duration-500 transform group-hover:scale-105 group-hover:-translate-y-2 ${contact.hoverColor} hover:shadow-2xl`}>
+              <div className={`relative bg-gray-900/90 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border-2 border-gray-800 group-hover:border-neon-blue transition-all duration-500 transform group-hover:scale-105 group-hover:-translate-y-2 ${contact.hoverColor} hover:shadow-2xl`}>
                 {/* Icon container */}
-                <div className="flex justify-center mb-6">
+                <div className="flex justify-center mb-4 sm:mb-6">
                   <div className={`relative transition-all duration-500 ${
                     hoveredCard === contact.id ? 'scale-110 rotate-12' : 'scale-100 rotate-0'
                   }`}>
                     <div className={`absolute inset-0 bg-gradient-to-r ${contact.color} rounded-2xl blur-xl opacity-50 group-hover:opacity-100 transition-opacity duration-500`}></div>
-                    <div className="relative text-neon-blue group-hover:text-white transition-colors duration-300">
-                      {contact.icon}
+                    <div className="relative text-neon-blue group-hover:text-white transition-colors duration-300 w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center">
+                      <div className="scale-75 sm:scale-100">
+                        {contact.icon}
+                      </div>
                     </div>
                   </div>
                 </div>
 
                 {/* Label */}
-                <h3 className="text-2xl font-bold text-center text-white mb-3 group-hover:text-neon-blue transition-colors duration-300">
+                <h3 className="text-xl sm:text-2xl font-bold text-center text-white mb-2 sm:mb-3 group-hover:text-neon-blue transition-colors duration-300">
                   {contact.label}
                 </h3>
 
                 {/* Value */}
-                <p className="text-center text-gray-400 text-sm group-hover:text-gray-300 transition-colors duration-300 break-all">
+                <p className="text-center text-gray-400 text-xs sm:text-sm group-hover:text-gray-300 transition-colors duration-300 break-all px-2">
                   {contact.value}
                 </p>
 
                 {/* Hover indicator */}
-                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-                  <span className="text-neon-blue text-sm font-semibold flex items-center gap-2">
+                <div className="absolute bottom-3 sm:bottom-4 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                  <span className="text-neon-blue text-xs sm:text-sm font-semibold flex items-center gap-2">
                     Click to {contact.id === 'email' ? 'send email' : 'visit'}
-                    <svg className="w-4 h-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-3 h-3 sm:w-4 sm:h-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                     </svg>
                   </span>

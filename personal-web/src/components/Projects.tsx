@@ -213,25 +213,25 @@ export default function Projects() {
         </h2>
 
         {/* Project Navigation Arrows - Large and Prominent */}
-        <div className="flex justify-between items-center mb-8">
+        <div className="flex justify-between items-center mb-8 gap-2 px-2">
           <button
             onClick={() => handleProjectChange('prev')}
             disabled={isTransitioning}
-            className="group flex items-center gap-3 px-6 py-4 bg-gray-900/80 hover:bg-neon-blue/20 text-neon-blue border-2 border-neon-blue/50 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-neon-blue/50 hover:scale-110 hover:-translate-x-1 disabled:opacity-50 disabled:cursor-not-allowed active:scale-95"
+            className="group flex items-center gap-2 sm:gap-3 px-3 sm:px-6 py-3 sm:py-4 bg-gray-900/80 hover:bg-neon-blue/20 text-neon-blue border-2 border-neon-blue/50 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-neon-blue/50 hover:scale-110 hover:-translate-x-1 disabled:opacity-50 disabled:cursor-not-allowed active:scale-95"
           >
-            <svg className="w-8 h-8 group-hover:-translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-6 h-6 sm:w-8 sm:h-8 group-hover:-translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M15 19l-7-7 7-7" />
             </svg>
-            <span className="font-bold text-lg hidden md:block">Previous</span>
+            <span className="font-bold text-sm sm:text-lg hidden sm:block">Previous</span>
           </button>
 
           {/* Project Counter */}
-          <div className="flex items-center gap-4 px-6 py-3 bg-gray-900/80 backdrop-blur-sm rounded-xl border border-gray-800">
+          <div className="flex items-center gap-2 sm:gap-4 px-3 sm:px-6 py-2 sm:py-3 bg-gray-900/80 backdrop-blur-sm rounded-xl border border-gray-800">
             <div className="text-center">
-              <span className="text-3xl font-bold text-neon-blue">{activeProjectIndex + 1}</span>
-              <span className="text-gray-400 text-xl"> / {projects.length}</span>
+              <span className="text-2xl sm:text-3xl font-bold text-neon-blue">{activeProjectIndex + 1}</span>
+              <span className="text-gray-400 text-lg sm:text-xl"> / {projects.length}</span>
             </div>
-            <div className="flex gap-1.5">
+            <div className="hidden sm:flex gap-1.5">
               {projects.map((_, idx) => (
                 <button
                   key={idx}
@@ -259,10 +259,10 @@ export default function Projects() {
           <button
             onClick={() => handleProjectChange('next')}
             disabled={isTransitioning}
-            className="group flex items-center gap-3 px-6 py-4 bg-gray-900/80 hover:bg-neon-blue/20 text-neon-blue border-2 border-neon-blue/50 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-neon-blue/50 hover:scale-110 hover:translate-x-1 disabled:opacity-50 disabled:cursor-not-allowed active:scale-95"
+            className="group flex items-center gap-2 sm:gap-3 px-3 sm:px-6 py-3 sm:py-4 bg-gray-900/80 hover:bg-neon-blue/20 text-neon-blue border-2 border-neon-blue/50 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-neon-blue/50 hover:scale-110 hover:translate-x-1 disabled:opacity-50 disabled:cursor-not-allowed active:scale-95"
           >
-            <span className="font-bold text-lg hidden md:block">Next</span>
-            <svg className="w-8 h-8 group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <span className="font-bold text-sm sm:text-lg hidden sm:block">Next</span>
+            <svg className="w-6 h-6 sm:w-8 sm:h-8 group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
             </svg>
           </button>
@@ -283,22 +283,22 @@ export default function Projects() {
               : 'opacity-100 translate-x-0'
           }`}>
             {/* Split Layout - Details Left, Image Right */}
-            <div className="grid lg:grid-cols-2 gap-8 items-center">
+            <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 items-center">
               {/* Left Side - Project Information */}
-              <div className="relative bg-gray-900/80 backdrop-blur-sm rounded-2xl p-8 border border-gray-800 hover:border-neon-blue/50 transition-all duration-500 shadow-xl order-2 lg:order-1">
+              <div className="relative bg-gray-900/80 backdrop-blur-sm rounded-2xl p-4 sm:p-6 lg:p-8 border border-gray-800 hover:border-neon-blue/50 transition-all duration-500 shadow-xl order-2 lg:order-1">
                 {/* Featured Badge */}
                 {currentProject.featured && (
-                  <div className="mb-6">
-                    <span className="inline-flex items-center gap-2 px-4 py-2 bg-neon-blue/20 text-neon-blue border border-neon-blue/50 text-xs font-bold rounded-lg shadow-lg shadow-neon-blue/30">
-                      <span className="text-base">⭐</span>
+                  <div className="mb-4 sm:mb-6">
+                    <span className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-neon-blue/20 text-neon-blue border border-neon-blue/50 text-xs font-bold rounded-lg shadow-lg shadow-neon-blue/30">
+                      <span className="text-sm sm:text-base">⭐</span>
                       FEATURED PROJECT
                     </span>
                   </div>
                 )}
 
                 {/* Title with GitHub Link */}
-                <div className="flex items-start justify-between mb-6 gap-4">
-                  <h3 className="text-4xl font-bold text-white hover:text-neon-blue transition-colors duration-300 flex-1">
+                <div className="flex items-start justify-between mb-4 sm:mb-6 gap-3 sm:gap-4">
+                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white hover:text-neon-blue transition-colors duration-300 flex-1">
                     {currentProject.title}
                   </h3>
                   {currentProject.github && (
@@ -306,10 +306,10 @@ export default function Projects() {
                       href={currentProject.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-shrink-0 p-3 bg-gray-800 hover:bg-neon-blue/20 text-neon-blue rounded-xl border-2 border-neon-blue/30 transition-all duration-300 hover:shadow-lg hover:shadow-neon-blue/50 hover:scale-110 group"
+                      className="flex-shrink-0 p-2 sm:p-3 bg-gray-800 hover:bg-neon-blue/20 text-neon-blue rounded-xl border-2 border-neon-blue/30 transition-all duration-300 hover:shadow-lg hover:shadow-neon-blue/50 hover:scale-110 group"
                       title="View on GitHub"
                     >
-                      <svg className="w-6 h-6 group-hover:rotate-12 transition-transform duration-300" fill="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-5 h-5 sm:w-6 sm:h-6 group-hover:rotate-12 transition-transform duration-300" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
                       </svg>
                     </a>
@@ -317,13 +317,13 @@ export default function Projects() {
                 </div>
 
                 {/* Description Points */}
-                <div className="mb-6 space-y-3">
+                <div className="mb-4 sm:mb-6 space-y-2 sm:space-y-3">
                   {currentProject.description.map((desc, descIdx) => (
                     <p 
                       key={descIdx}
-                      className="text-gray-300 text-base flex items-start gap-3"
+                      className="text-gray-300 text-sm sm:text-base flex items-start gap-2 sm:gap-3"
                     >
-                      <span className="text-neon-blue text-xl mt-0.5">▹</span>
+                      <span className="text-neon-blue text-lg sm:text-xl mt-0.5">▹</span>
                       <span>{desc}</span>
                     </p>
                   ))}
@@ -331,16 +331,16 @@ export default function Projects() {
 
                 {/* Collaborators */}
                 {currentProject.collaborators && (
-                  <div className="mb-6 flex flex-wrap gap-3">
+                  <div className="mb-4 sm:mb-6 flex flex-wrap gap-2 sm:gap-3">
                     {currentProject.collaborators.map((collab, collabIdx) => (
                       <a
                         key={collabIdx}
                         href={collab.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-4 py-2 bg-gray-800 hover:bg-neon-blue/20 text-neon-blue text-sm rounded-full border-2 border-neon-blue/30 transition-all duration-300 hover:shadow-lg hover:shadow-neon-blue/50 hover:scale-105"
+                        className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-gray-800 hover:bg-neon-blue/20 text-neon-blue text-xs sm:text-sm rounded-full border-2 border-neon-blue/30 transition-all duration-300 hover:shadow-lg hover:shadow-neon-blue/50 hover:scale-105"
                       >
-                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
                         </svg>
                         <span className="font-semibold">Collaborated with {collab.name}</span>
@@ -350,11 +350,11 @@ export default function Projects() {
                 )}
 
                 {/* Tech Stack */}
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-1.5 sm:gap-2">
                   {currentProject.tags.map((tag, tagIdx) => (
                     <span
                       key={tagIdx}
-                      className="px-4 py-2 bg-gray-800/50 text-neon-blue text-sm font-medium rounded-lg border border-gray-700 transition-all duration-300 hover:border-neon-blue hover:bg-gray-800 hover:shadow-md hover:shadow-neon-blue/30 hover:scale-105 cursor-default"
+                      className="px-2 sm:px-4 py-1 sm:py-2 bg-gray-800/50 text-neon-blue text-xs sm:text-sm font-medium rounded-lg border border-gray-700 transition-all duration-300 hover:border-neon-blue hover:bg-gray-800 hover:shadow-md hover:shadow-neon-blue/30 hover:scale-105 cursor-default"
                     >
                       {tag}
                     </span>
@@ -368,14 +368,14 @@ export default function Projects() {
               {/* Right Side - Skewed Image with Neon Backlight */}
               <div className="relative order-1 lg:order-2 perspective-1000">
                 {/* Pure Blue Neon Backlight Glow - matching other pages */}
-                <div className="absolute -inset-8 bg-neon-blue-500/20 blur-3xl opacity-60 rounded-full" />
-                <div className="absolute -inset-6 bg-neon-blue-400/15 blur-2xl opacity-50 rounded-full animate-pulse-slow" />
+                <div className="absolute -inset-8 bg-neon-blue-500/20 blur-3xl opacity-60 rounded-full hidden lg:block" />
+                <div className="absolute -inset-6 bg-neon-blue-400/15 blur-2xl opacity-50 rounded-full animate-pulse-slow hidden lg:block" />
                 
-                {/* Skewed Image Container */}
+                {/* Skewed Image Container - skew disabled on mobile */}
                 <div 
                   className="relative group transition-all duration-700 hover:scale-105"
                   style={{ 
-                    transform: 'perspective(1200px) rotateY(-8deg) rotateX(2deg)',
+                    transform: window.innerWidth >= 1024 ? 'perspective(1200px) rotateY(-8deg) rotateX(2deg)' : 'none',
                     transformStyle: 'preserve-3d'
                   }}
                 >
@@ -415,9 +415,9 @@ export default function Projects() {
                 {/* Image Navigation - Below and Skewed */}
                 {currentProject.images.length > 1 && (
                   <div 
-                    className="mt-6 flex gap-3 justify-center"
+                    className="mt-4 sm:mt-6 flex gap-2 sm:gap-3 justify-center"
                     style={{ 
-                      transform: 'perspective(1200px) rotateY(-8deg) rotateX(2deg)',
+                      transform: window.innerWidth >= 1024 ? 'perspective(1200px) rotateY(-8deg) rotateX(2deg)' : 'none',
                       transformStyle: 'preserve-3d'
                     }}
                   >
@@ -427,11 +427,11 @@ export default function Projects() {
                         handleImageChange('prev');
                       }}
                       disabled={isImageTransitioning}
-                      className="px-5 py-3 bg-gray-900/90 hover:bg-neon-blue/30 text-neon-blue border-2 border-neon-blue/50 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-neon-blue/50 text-base font-bold hover:scale-110 active:scale-95 backdrop-blur-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="px-3 sm:px-5 py-2 sm:py-3 bg-gray-900/90 hover:bg-neon-blue/30 text-neon-blue border-2 border-neon-blue/50 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-neon-blue/50 text-sm sm:text-base font-bold hover:scale-110 active:scale-95 backdrop-blur-sm disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       ←
                     </button>
-                    <div className="flex gap-2 items-center px-5 py-3 bg-gray-900/90 rounded-xl border-2 border-gray-700 backdrop-blur-sm">
+                    <div className="flex gap-1.5 sm:gap-2 items-center px-3 sm:px-5 py-2 sm:py-3 bg-gray-900/90 rounded-xl border-2 border-gray-700 backdrop-blur-sm">
                       {currentProject.images.map((_, imgIdx) => (
                         <button
                           key={imgIdx}
@@ -446,10 +446,10 @@ export default function Projects() {
                               }, 300);
                             }
                           }}
-                          className={`h-2.5 rounded-full transition-all duration-300 ${
+                          className={`h-2 sm:h-2.5 rounded-full transition-all duration-300 ${
                             imgIdx === activeImageIndex 
-                              ? 'w-10 bg-neon-blue shadow-lg shadow-neon-blue/50' 
-                              : 'w-2.5 bg-gray-500 hover:bg-neon-blue/50'
+                              ? 'w-8 sm:w-10 bg-neon-blue shadow-lg shadow-neon-blue/50' 
+                              : 'w-2 sm:w-2.5 bg-gray-500 hover:bg-neon-blue/50'
                           }`}
                         />
                       ))}
@@ -460,7 +460,7 @@ export default function Projects() {
                         handleImageChange('next');
                       }}
                       disabled={isImageTransitioning}
-                      className="px-5 py-3 bg-gray-900/90 hover:bg-neon-blue/30 text-neon-blue border-2 border-neon-blue/50 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-neon-blue/50 text-base font-bold hover:scale-110 active:scale-95 backdrop-blur-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="px-3 sm:px-5 py-2 sm:py-3 bg-gray-900/90 hover:bg-neon-blue/30 text-neon-blue border-2 border-neon-blue/50 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-neon-blue/50 text-sm sm:text-base font-bold hover:scale-110 active:scale-95 backdrop-blur-sm disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       →
                     </button>
@@ -472,7 +472,7 @@ export default function Projects() {
         </div>
 
         {/* Keyboard Navigation Hint */}
-        <div className="mt-8 text-center text-gray-500 text-sm">
+        <div className="mt-8 text-center text-gray-500 text-xs sm:text-sm">
           <p>Use arrow buttons or click dots to navigate between projects</p>
         </div>
       </div>

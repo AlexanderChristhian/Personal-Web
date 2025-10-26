@@ -177,7 +177,7 @@ function About() {
           {/* Category Tabs */}
           <div 
             ref={tabsRef as React.RefObject<HTMLDivElement>}
-            className={`flex flex-wrap justify-center gap-3 mb-10 transition-all duration-1000 delay-400 ${
+            className={`flex flex-wrap justify-center gap-2 md:gap-3 mb-10 px-4 transition-all duration-1000 delay-400 ${
               tabsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}
           >
@@ -186,7 +186,7 @@ function About() {
                 key={category}
                 onClick={() => setActiveCategory(category)}
                 className={`
-                  px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-300 transform hover:scale-105 relative overflow-hidden
+                  px-3 sm:px-4 md:px-6 py-2 md:py-3 rounded-xl font-semibold text-xs sm:text-sm transition-all duration-300 transform hover:scale-105 relative overflow-hidden
                   ${activeCategory === category
                     ? 'bg-neon-blue-500 text-black shadow-neon'
                     : 'bg-black/40 backdrop-blur-sm text-neon-blue-400 border-2 border-neon-blue-500/30 hover:border-neon-blue-500/60 hover:bg-neon-blue-500/10'
@@ -204,15 +204,15 @@ function About() {
           {/* Tech Grid - Transparent background */}
           <div 
             ref={techGridRef as React.RefObject<HTMLDivElement>}
-            className={`min-h-[350px] transition-all duration-1000 delay-500 ${
+            className={`min-h-[350px] transition-all duration-1000 delay-500 px-4 ${
               techGridVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}
           >
-            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 gap-6 max-w-6xl mx-auto">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-3 sm:gap-4 md:gap-6 max-w-6xl mx-auto">
               {techStack[activeCategory as keyof typeof techStack].map((tech, index) => (
                 <div
                   key={tech.name}
-                  className="group relative flex flex-col items-center gap-3 p-5 rounded-2xl bg-black/40 backdrop-blur-md border-2 border-neon-blue-500/30 hover:border-neon-blue-500/80 hover:bg-black/60 transition-all duration-500 cursor-pointer overflow-hidden"
+                  className="group relative flex flex-col items-center gap-2 sm:gap-3 p-3 sm:p-4 md:p-5 rounded-xl sm:rounded-2xl bg-black/40 backdrop-blur-md border-2 border-neon-blue-500/30 hover:border-neon-blue-500/80 hover:bg-black/60 transition-all duration-500 cursor-pointer overflow-hidden"
                   style={{
                     animation: `fadeInUp 0.5s ease-out ${index * 0.05}s backwards`,
                     transform: hoveredTech === tech.name 
@@ -237,11 +237,11 @@ function About() {
                   </div>
                   
                   {/* Content */}
-                  <div className="relative z-10 w-16 h-16 flex items-center justify-center">
+                  <div className="relative z-10 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 flex items-center justify-center">
                     <img
                       src={tech.icon}
                       alt={tech.name}
-                      className="w-full h-full object-contain group-hover:scale-125 group-hover:rotate-6 transition-all duration-500 drop-shadow-lg group-hover:drop-shadow-[0_0_20px_rgba(0,163,255,0.9)]"
+                      className="w-full h-full object-contain group-hover:scale-110 sm:group-hover:scale-125 group-hover:rotate-6 transition-all duration-500 drop-shadow-lg group-hover:drop-shadow-[0_0_20px_rgba(0,163,255,0.9)]"
                       style={{
                         filter: hoveredTech === tech.name ? 'brightness(1.2)' : 'brightness(1)'
                       }}
@@ -256,7 +256,7 @@ function About() {
                     />
                   </div>
                   
-                  <span className="relative z-10 text-xs text-gray-300 text-center group-hover:text-neon-blue-200 transition-all duration-300 font-medium group-hover:font-bold">
+                  <span className="relative z-10 text-[10px] sm:text-xs text-gray-300 text-center group-hover:text-neon-blue-200 transition-all duration-300 font-medium group-hover:font-bold leading-tight">
                     {tech.name}
                   </span>
                   

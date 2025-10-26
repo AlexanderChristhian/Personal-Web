@@ -90,7 +90,7 @@ function Hero() {
           {/* Photo Section */}
           <div className="flex justify-center order-1 md:order-2">
             <div 
-              className="relative transition-transform duration-300 ease-out"
+              className="relative transition-transform duration-300 ease-out w-64 h-64 md:w-80 md:h-80"
               style={{
                 transform: `perspective(1000px) rotateY(${mousePosition.x * 10}deg) rotateX(${mousePosition.y * -10}deg)`
               }}
@@ -122,6 +122,7 @@ function Hero() {
                   src="/Foto_Personal.jpg" 
                   alt="Profile" 
                   className={`w-full h-full object-cover transition-transform duration-500 ${isHovering ? 'scale-110' : 'scale-100'}`}
+                  style={{ objectFit: 'cover', objectPosition: 'center' }}
                 />
                 {/* Scanline effect on hover */}
                 {isHovering && (
@@ -131,20 +132,20 @@ function Hero() {
               
               {/* Floating code brackets with 3D effect */}
               <div 
-                className="absolute -top-2 -left-2 text-3xl md:text-4xl neon-text animate-pulse font-mono transition-transform duration-300"
+                className="absolute -top-2 -left-2 text-2xl md:text-4xl neon-text animate-pulse font-mono transition-transform duration-300"
                 style={{ transform: `translate(${mousePosition.x * -15}px, ${mousePosition.y * -15}px)` }}
               >&lt;/&gt;</div>
               <div 
-                className="absolute -bottom-2 -right-2 text-3xl md:text-4xl neon-text animate-pulse font-mono transition-transform duration-300" 
+                className="absolute -bottom-2 -right-2 text-2xl md:text-4xl neon-text animate-pulse font-mono transition-transform duration-300" 
                 style={{ 
                   animationDelay: '1s',
                   transform: `translate(${mousePosition.x * 15}px, ${mousePosition.y * 15}px)`
                 }}
               >{ }</div>
               
-              {/* Binary code streams with flow animation */}
+              {/* Binary code streams with flow animation - hidden on mobile */}
               <div 
-                className="absolute -right-16 top-10 opacity-30 text-neon-blue-500 text-xs font-mono transition-all duration-300"
+                className="absolute -right-16 top-10 opacity-30 text-neon-blue-500 text-xs font-mono transition-all duration-300 hidden md:block"
                 style={{ 
                   animation: 'float 3s ease-in-out infinite',
                   transform: `translateY(${mousePosition.y * 20}px)`
@@ -156,7 +157,7 @@ function Hero() {
               </div>
               
               <div 
-                className="absolute -left-16 bottom-10 opacity-30 text-neon-blue-500 text-xs font-mono transition-all duration-300" 
+                className="absolute -left-16 bottom-10 opacity-30 text-neon-blue-500 text-xs font-mono transition-all duration-300 hidden md:block" 
                 style={{ 
                   animation: 'float 3s ease-in-out infinite',
                   animationDelay: '1.5s',
@@ -181,12 +182,12 @@ function Hero() {
             </h2>
             
             {/* Animated switching text */}
-            <div className="mb-8 h-16 md:h-20 flex items-center justify-center md:justify-start">
-              <div className="relative">
-                <span className="text-lg md:text-2xl text-gray-400 mr-3">Passionate about</span>
+            <div className="mb-8 min-h-[80px] md:h-20 flex items-center justify-center md:justify-start">
+              <div className="relative flex flex-wrap items-center justify-center md:justify-start gap-x-2">
+                <span className="text-base sm:text-lg md:text-2xl text-gray-400">Passionate about</span>
                 <span 
                   className={`
-                    text-lg md:text-2xl font-bold
+                    text-base sm:text-lg md:text-2xl font-bold
                     neon-text
                     transition-all duration-500 transform inline-block
                     ${isAnimating 
@@ -214,17 +215,17 @@ function Hero() {
               </div>
             </div>
 
-            <div className="flex justify-center md:justify-start gap-4 mt-8">
+            <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-4 mt-8">
               <a 
                 href="#projects" 
-                className="group px-8 py-3 bg-neon-blue-500 text-black font-semibold rounded-lg hover:shadow-neon transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 relative overflow-hidden"
+                className="group px-6 sm:px-8 py-3 bg-neon-blue-500 text-black font-semibold rounded-lg hover:shadow-neon transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 relative overflow-hidden text-center"
               >
                 <span className="relative z-10">View Projects</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-neon-blue-400 to-neon-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </a>
               <a 
                 href="#contact" 
-                className="group px-8 py-3 border-2 border-neon-blue-500 text-neon-blue-500 font-semibold rounded-lg hover:bg-neon-blue-500 hover:text-black transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 relative overflow-hidden"
+                className="group px-6 sm:px-8 py-3 border-2 border-neon-blue-500 text-neon-blue-500 font-semibold rounded-lg hover:bg-neon-blue-500 hover:text-black transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 relative overflow-hidden text-center"
               >
                 <span className="relative z-10">Contact Me</span>
                 <div className="absolute inset-0 bg-neon-blue-500 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
