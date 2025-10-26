@@ -10,15 +10,15 @@ function Footer() {
       <div className="max-w-6xl mx-auto px-4 relative z-10">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="text-gray-400 text-sm">
-            © {currentYear} <span className="text-neon-blue-400">Your Name</span>. All rights reserved.
+            © {currentYear} <span className="text-neon-blue-400">Alexander Christhian</span>. All rights reserved.
           </div>
           
           <div className="flex gap-6">
             <a 
-              href="https://github.com/yourusername" 
+              href="https://github.com/AlexanderChristhian" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-gray-400 hover:text-neon-blue-400 transition-colors duration-300"
+              className="text-gray-400 hover:text-neon-blue-400 transition-all duration-300 transform hover:scale-110"
               aria-label="GitHub"
             >
               <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -27,10 +27,10 @@ function Footer() {
             </a>
             
             <a 
-              href="https://linkedin.com/in/yourprofile" 
+              href="https://www.linkedin.com/in/alexanderchristhian" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-gray-400 hover:text-neon-blue-400 transition-colors duration-300"
+              className="text-gray-400 hover:text-neon-blue-400 transition-all duration-300 transform hover:scale-110"
               aria-label="LinkedIn"
             >
               <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -39,8 +39,8 @@ function Footer() {
             </a>
             
             <a 
-              href="mailto:your.email@example.com" 
-              className="text-gray-400 hover:text-neon-blue-400 transition-colors duration-300"
+              href="mailto:alexanderchristian100@gmail.com" 
+              className="text-gray-400 hover:text-neon-blue-400 transition-all duration-300 transform hover:scale-110"
               aria-label="Email"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -50,9 +50,7 @@ function Footer() {
           </div>
         </div>
         
-        <div className="mt-6 text-center text-sm text-gray-500">
-          Built with <span className="text-neon-blue-400">React</span> + <span className="text-neon-blue-400">TypeScript</span> + <span className="text-neon-blue-400">Tailwind CSS</span>
-        </div>
+
       </div>
     </footer>
   );

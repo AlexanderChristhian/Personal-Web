@@ -1,10 +1,16 @@
 import { useState, useEffect, useRef } from 'react';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 function About() {
   const [activeCategory, setActiveCategory] = useState("Programming Languages");
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [hoveredTech, setHoveredTech] = useState<string | null>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
+  const { ref: titleRef, isVisible: titleVisible } = useScrollAnimation(0.3, false);
+  const { ref: introRef, isVisible: introVisible } = useScrollAnimation(0.3, false);
+  const { ref: categoriesRef, isVisible: categoriesVisible } = useScrollAnimation(0.2, false);
+  const { ref: tabsRef, isVisible: tabsVisible } = useScrollAnimation(0.2, false);
+  const { ref: techGridRef, isVisible: techGridVisible } = useScrollAnimation(0.1, false);
 
   // Mouse tracking for parallax effect
   useEffect(() => {
@@ -113,7 +119,12 @@ function About() {
       
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Title with enhanced styling and animation */}
-        <div className="text-center mb-20">
+        <div 
+          ref={titleRef as React.RefObject<HTMLDivElement>}
+          className={`text-center mb-20 transition-all duration-1000 ${
+            titleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
+        >
           <h2 
             className="text-5xl md:text-6xl font-bold mb-4 transition-transform duration-300"
             style={{
@@ -131,7 +142,12 @@ function About() {
         </div>
         
         {/* Intro - Full width, no box with wave animation */}
-        <div className="mb-16 max-w-5xl mx-auto group">
+        <div 
+          ref={introRef as React.RefObject<HTMLDivElement>}
+          className={`mb-16 max-w-5xl mx-auto group transition-all duration-1000 delay-200 ${
+            introVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
+        >
           <div className="relative">
             {/* Animated circuit lines */}
             <div className="absolute -left-8 top-1/2 -translate-y-1/2 w-16 h-0.5 bg-gradient-to-r from-transparent to-neon-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -147,15 +163,25 @@ function About() {
         
         {/* Tech Stack Section */}
         <div className="mb-12">
-          <div className="text-center mb-10">
+          <div 
+            ref={categoriesRef as React.RefObject<HTMLDivElement>}
+            className={`text-center mb-10 transition-all duration-1000 delay-300 ${
+              categoriesVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
+            }`}
+          >
             <h3 className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-neon-blue-400 via-neon-blue-500 to-neon-blue-400 inline-block mb-4">
               Tech Stack & Tools
             </h3>
           </div>
           
           {/* Category Tabs */}
-          <div className="flex flex-wrap justify-center gap-3 mb-10">
-            {Object.keys(techStack).map((category, index) => (
+          <div 
+            ref={tabsRef as React.RefObject<HTMLDivElement>}
+            className={`flex flex-wrap justify-center gap-3 mb-10 transition-all duration-1000 delay-400 ${
+              tabsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}
+          >
+            {Object.keys(techStack).map((category) => (
               <button
                 key={category}
                 onClick={() => setActiveCategory(category)}
@@ -166,9 +192,6 @@ function About() {
                     : 'bg-black/40 backdrop-blur-sm text-neon-blue-400 border-2 border-neon-blue-500/30 hover:border-neon-blue-500/60 hover:bg-neon-blue-500/10'
                   }
                 `}
-                style={{
-                  animation: `fadeInUp 0.3s ease-out ${index * 0.05}s backwards`
-                }}
               >
                 {activeCategory === category && (
                   <div className="absolute inset-0 bg-gradient-to-r from-neon-blue-400 via-neon-blue-500 to-neon-blue-400 animate-pulse-slow"></div>
@@ -179,7 +202,12 @@ function About() {
           </div>
           
           {/* Tech Grid - Transparent background */}
-          <div className="min-h-[350px]">
+          <div 
+            ref={techGridRef as React.RefObject<HTMLDivElement>}
+            className={`min-h-[350px] transition-all duration-1000 delay-500 ${
+              techGridVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}
+          >
             <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 gap-6 max-w-6xl mx-auto">
               {techStack[activeCategory as keyof typeof techStack].map((tech, index) => (
                 <div

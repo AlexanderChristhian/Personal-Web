@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 function Hero() {
   const interests = [
@@ -12,6 +13,7 @@ function Hero() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
+  const { ref: contentRef, isVisible: contentVisible } = useScrollAnimation(0.2, false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -78,7 +80,12 @@ function Hero() {
         ))}
       </div>
       
-      <div className="relative z-10 px-4 max-w-6xl mx-auto">
+      <div 
+        ref={contentRef as React.RefObject<HTMLDivElement>}
+        className={`relative z-10 px-4 max-w-6xl mx-auto transition-all duration-1000 ${
+          contentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}
+      >
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Photo Section */}
           <div className="flex justify-center order-1 md:order-2">

@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 interface JourneyItem {
   id: number;
@@ -13,6 +14,33 @@ interface JourneyItem {
 const Journey = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const sectionRef = useRef<HTMLElement>(null);
+  const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation(0.3, false);
+  const [visibleItems, setVisibleItems] = useState<number[]>([]);
+  const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const index = itemRefs.current.indexOf(entry.target as HTMLDivElement);
+          if (index !== -1) {
+            if (entry.isIntersecting) {
+              setVisibleItems((prev) => [...new Set([...prev, index])]);
+            } else {
+              setVisibleItems((prev) => prev.filter((i) => i !== index));
+            }
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    itemRefs.current.forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -114,7 +142,12 @@ const Journey = () => {
 
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Header */}
-        <div className="text-center mb-16 animate-fadeInUp">
+        <div 
+          ref={headerRef as React.RefObject<HTMLDivElement>}
+          className={`text-center mb-16 transition-all duration-1000 ${
+            headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'
+          }`}
+        >
           <h2 className="text-5xl font-bold mb-4">
             <span className="neon-text">My Journey</span>
           </h2>
@@ -139,10 +172,16 @@ const Journey = () => {
             {journeyData.map((item, index) => (
               <div 
                 key={item.id}
-                className={`relative flex items-stretch ${
+                ref={(el) => { itemRefs.current[index] = el; }}
+                className={`relative flex items-stretch transition-all duration-1000 ${
                   index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'
-                } animate-fadeInUp group`}
-                style={{ animationDelay: `${index * 0.2}s` }}
+                } group ${
+                  visibleItems.includes(index)
+                    ? 'opacity-100 translate-x-0'
+                    : index % 2 === 0
+                    ? 'opacity-0 -translate-x-20'
+                    : 'opacity-0 translate-x-20'
+                }`}
               >
                 {/* Content card */}
                 <div className={`w-5/12 ${index % 2 === 0 ? 'pr-12 text-right' : 'pl-12 text-left'} flex items-center`}>
