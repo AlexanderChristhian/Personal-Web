@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import OptimizedImage from './OptimizedImage';
 
 interface Project {
   title: string;
@@ -374,18 +375,21 @@ export default function Projects() {
                   <div className="relative rounded-2xl overflow-hidden border-2 border-neon-blue/60 shadow-2xl shadow-neon-blue/40 transition-all duration-500 group-hover:shadow-neon-blue/80 group-hover:border-neon-blue group-hover:-translate-y-2 bg-gray-950">
                     {/* Image with slide animation */}
                     <div className="relative overflow-hidden">
-                      <img
-                        src={currentProject.images[activeImageIndex]}
-                        alt={`${currentProject.title} screenshot ${activeImageIndex + 1}`}
-                        loading="lazy"
-                        className={`w-full h-auto object-cover transition-all duration-300 ${
-                          isImageTransitioning
-                            ? imageSlideDirection === 'left'
-                              ? 'opacity-0 -translate-x-full'
-                              : 'opacity-0 translate-x-full'
-                            : 'opacity-100 translate-x-0'
-                        }`}
-                      />
+                      <div className={`transition-all duration-300 ${
+                        isImageTransitioning
+                          ? imageSlideDirection === 'left'
+                            ? 'opacity-0 -translate-x-full'
+                            : 'opacity-0 translate-x-full'
+                          : 'opacity-100 translate-x-0'
+                      }`}>
+                        <OptimizedImage
+                          src={currentProject.images[activeImageIndex]}
+                          alt={`${currentProject.title} screenshot ${activeImageIndex + 1}`}
+                          loading="lazy"
+                          className="w-full h-auto"
+                          objectFit="cover"
+                        />
+                      </div>
                       
                       {/* Gradient overlay for depth */}
                       <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-neon-blue/10 pointer-events-none" />

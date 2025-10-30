@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import OptimizedImage from './OptimizedImage';
 
 function About() {
   const [activeCategory, setActiveCategory] = useState("Programming Languages");
@@ -198,22 +199,15 @@ function About() {
                   
                   {/* Content */}
                   <div className="relative z-10 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 flex items-center justify-center">
-                    <img
+                    <OptimizedImage
                       src={tech.icon}
                       alt={tech.name}
                       loading="lazy"
-                      className="w-full h-full object-contain group-hover:scale-110 sm:group-hover:scale-125 group-hover:rotate-6 transition-all duration-500 drop-shadow-lg group-hover:drop-shadow-[0_0_20px_rgba(0,163,255,0.9)]"
+                      className={`w-full h-full group-hover:scale-110 sm:group-hover:scale-125 group-hover:rotate-6 transition-all duration-500 drop-shadow-lg group-hover:drop-shadow-[0_0_20px_rgba(0,163,255,0.9)]`}
                       style={{
                         filter: hoveredTech === tech.name ? 'brightness(1.2)' : 'brightness(1)'
                       }}
-                      onError={(e) => {
-                        const target = e.currentTarget as HTMLImageElement;
-                        target.style.display = 'none';
-                        const fallback = document.createElement('div');
-                        fallback.className = 'w-16 h-16 rounded-full bg-gradient-to-br from-neon-blue-500 to-neon-blue-700 flex items-center justify-center text-2xl font-bold text-white shadow-neon';
-                        fallback.textContent = tech.name.charAt(0);
-                        target.parentElement?.appendChild(fallback);
-                      }}
+                      objectFit="contain"
                     />
                   </div>
                   

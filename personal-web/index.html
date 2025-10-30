@@ -4,7 +4,21 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/Logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>personal-web</title>
+    
+    <!-- Preload critical above-the-fold image -->
+    <link rel="preload" as="image" href="/Foto_Personal.jpg" fetchpriority="high" />
+    
+    <!-- DNS Prefetch for external CDN resources -->
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+    <link rel="dns-prefetch" href="https://upload.wikimedia.org" />
+    <link rel="dns-prefetch" href="https://avatars.githubusercontent.com" />
+    
+    <!-- Preconnect to external CDN resources -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link rel="preconnect" href="https://upload.wikimedia.org" crossorigin />
+    
+    <title>Alexander Christhian - Computer Engineering Student</title>
+    <meta name="description" content="Computer Engineering student passionate about software development, hardware engineering, and network systems." />
   </head>
   <body>
     <div id="root"></div>

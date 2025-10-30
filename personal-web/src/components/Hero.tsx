@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import OptimizedImage from './OptimizedImage';
 
 function Hero() {
   const interests = [
@@ -103,12 +104,13 @@ function Hero() {
               ></div>
               
               <div className={`relative w-48 h-48 sm:w-56 sm:h-56 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-neon-blue-500 shadow-neon transition-all duration-500 ${isHovering ? 'scale-105 shadow-neon-lg' : 'scale-100'}`}>
-                <img 
+                <OptimizedImage 
                   src="/Foto_Personal.jpg" 
                   alt="Profile" 
-                  loading="eager"
-                  className={`w-full h-full object-cover transition-transform duration-500 ${isHovering ? 'scale-110' : 'scale-100'}`}
-                  style={{ objectFit: 'cover', objectPosition: 'center' }}
+                  priority={true}
+                  className={`transition-transform duration-500 ${isHovering ? 'scale-110' : 'scale-100'}`}
+                  objectFit="cover"
+                  objectPosition="center"
                 />
                 {/* Scanline effect on hover */}
                 {isHovering && (

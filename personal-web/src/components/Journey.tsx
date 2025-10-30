@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import OptimizedImage from './OptimizedImage';
 
 interface JourneyItem {
   id: number;
@@ -182,11 +183,12 @@ const Journey = () => {
                 {/* Image on the other side */}
                 <div className={`w-full md:w-5/12 ${index % 2 === 0 ? 'md:pl-12' : 'md:pr-12'} flex ${index % 2 === 0 ? 'md:justify-start' : 'md:justify-end'}`}>
                   <div className="rounded-lg overflow-hidden border-2 border-neon-blue-500/50 shadow-neon group-hover:border-neon-blue-500 group-hover:shadow-neon-lg transition-all duration-300 group-hover:scale-105 w-full">
-                    <img 
+                    <OptimizedImage 
                       src={item.image} 
                       alt={item.organization}
                       loading="lazy"
-                      className="w-full h-48 sm:h-full object-cover"
+                      className="w-full h-48 sm:h-full"
+                      objectFit="cover"
                     />
                   </div>
                 </div>
