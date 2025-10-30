@@ -1,0 +1,119 @@
+/**
+ * Critical CSS - Inline in HTML head
+ * This contains only the minimal CSS needed for above-the-fold content
+ * Following McMaster-Carr's principle of inlining critical styles
+ */
+
+/* Critical Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  tab-size: 4;
+}
+
+body {
+  background-color: #000;
+  color: #f3f4f6;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Critical Utility Classes for Hero Section */
+.min-h-screen {
+  min-height: 100vh;
+}
+
+.flex {
+  display: flex;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.relative {
+  position: relative;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Neon Effect - Critical for brand identity */
+.neon-text {
+  color: #00a3ff;
+  text-shadow: 0 0 10px rgba(0, 163, 255, 0.8),
+               0 0 20px rgba(0, 163, 255, 0.6),
+               0 0 30px rgba(0, 163, 255, 0.4);
+}
+
+/* Cyber Grid Background - Hero only */
+.cyber-grid {
+  background-image: 
+    linear-gradient(rgba(0, 163, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 163, 255, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Hero Text Sizing - Mobile First */
+.hero-title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+@media (min-width: 640px) {
+  .hero-title {
+    font-size: 2.25rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-title {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-title {
+    font-size: 4.5rem;
+  }
+}
+
+/* Loading State - Prevent layout shift */
+.loading-placeholder {
+  background: linear-gradient(90deg, rgba(0,163,255,0.1) 0%, rgba(0,163,255,0.05) 50%, rgba(0,163,255,0.1) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Prevent FOUC (Flash of Unstyled Content) */
+.js-loading * {
+  animation-play-state: paused !important;
+  transition: none !important;
+}

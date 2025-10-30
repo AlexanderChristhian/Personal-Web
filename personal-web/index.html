@@ -4,24 +4,58 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/Logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#000000" />
     
-    <!-- Preload critical above-the-fold image -->
+    <!-- Inline Critical CSS for instant rendering (McMaster-Carr principle) -->
+    <style id="critical-css">
+      *{margin:0;padding:0;box-sizing:border-box}html{-webkit-text-size-adjust:100%;tab-size:4}body{background-color:#000;color:#f3f4f6;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Roboto','Oxygen','Ubuntu','Cantarell',sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}#root{min-height:100vh;width:100%}.min-h-screen{min-height:100vh}.flex{display:flex}.items-center{align-items:center}.justify-center{justify-content:center}.relative{position:relative}.overflow-hidden{overflow:hidden}.text-center{text-align:center}.neon-text{color:#00a3ff;text-shadow:0 0 10px rgba(0,163,255,.8),0 0 20px rgba(0,163,255,.6),0 0 30px rgba(0,163,255,.4)}.cyber-grid{background-image:linear-gradient(rgba(0,163,255,.1) 1px,transparent 1px),linear-gradient(90deg,rgba(0,163,255,.1) 1px,transparent 1px);background-size:50px 50px}.loading-placeholder{background:linear-gradient(90deg,rgba(0,163,255,.1) 0%,rgba(0,163,255,.05) 50%,rgba(0,163,255,.1) 100%);background-size:200% 100%;animation:shimmer 1.5s infinite}@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}.js-loading *{animation-play-state:paused!important;transition:none!important}
+    </style>
+    
+    <!-- Preload critical above-the-fold image with fetchpriority -->
     <link rel="preload" as="image" href="/Foto_Personal.jpg" fetchpriority="high" />
     
-    <!-- DNS Prefetch for external CDN resources -->
+    <!-- Resource Hints - McMaster-Carr aggressive optimization -->
+    <!-- DNS Prefetch for all external domains -->
     <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
     <link rel="dns-prefetch" href="https://upload.wikimedia.org" />
     <link rel="dns-prefetch" href="https://avatars.githubusercontent.com" />
+    <link rel="dns-prefetch" href="https://cdn.brandfetch.io" />
     
-    <!-- Preconnect to external CDN resources -->
+    <!-- Preconnect to most frequently used CDNs -->
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     <link rel="preconnect" href="https://upload.wikimedia.org" crossorigin />
     
+    <!-- Font optimization with display swap -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
     <title>Alexander Christhian - Computer Engineering Student</title>
-    <meta name="description" content="Computer Engineering student passionate about software development, hardware engineering, and network systems." />
+    <meta name="description" content="Computer Engineering student passionate about software development, hardware engineering, and network systems. Specializing in full-stack development, embedded systems, and FPGA design." />
+    <meta name="keywords" content="Computer Engineering, Software Development, Hardware Engineering, React, TypeScript, VHDL, FPGA, Embedded Systems" />
+    
+    <!-- Open Graph for better sharing -->
+    <meta property="og:title" content="Alexander Christhian - Computer Engineering Student" />
+    <meta property="og:description" content="Computer Engineering student passionate about software development, hardware engineering, and network systems." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/Foto_Personal.jpg" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Alexander Christhian - Computer Engineering Student" />
+    <meta name="twitter:description" content="Computer Engineering student passionate about software development, hardware engineering, and network systems." />
+    
+    <!-- Prevent FOUC -->
+    <script>document.documentElement.classList.add('js-loading')</script>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Remove loading class after DOM ready -->
+    <script>
+      window.addEventListener('DOMContentLoaded', function() {
+        document.documentElement.classList.remove('js-loading');
+      });
+    </script>
   </body>
 </html>
