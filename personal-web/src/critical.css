@@ -17,8 +17,7 @@ html {
 }
 
 body {
-  background-color: #000;
-  color: #f3f4f6;
+  /* Background and color handled by Tailwind dark mode classes */
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
@@ -59,19 +58,28 @@ body {
   text-align: center;
 }
 
-/* Neon Effect - Critical for brand identity */
+/* Subtle accent effect - Modern for brand identity */
 .neon-text {
-  color: #00a3ff;
-  text-shadow: 0 0 10px rgba(0, 163, 255, 0.8),
-               0 0 20px rgba(0, 163, 255, 0.6),
-               0 0 30px rgba(0, 163, 255, 0.4);
+  color: #60a5fa;
+  text-shadow: 0 0 20px rgba(0, 163, 255, 0.15);
 }
 
-/* Cyber Grid Background - Hero only */
+.dark .neon-text {
+  color: #60a5fa;
+}
+
+/* Subtle Grid Background - More visible in light mode */
 .cyber-grid {
   background-image: 
-    linear-gradient(rgba(0, 163, 255, 0.1) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 163, 255, 0.1) 1px, transparent 1px);
+    linear-gradient(rgba(0, 163, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 163, 255, 0.08) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+.dark .cyber-grid {
+  background-image: 
+    linear-gradient(rgba(0, 163, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 163, 255, 0.03) 1px, transparent 1px);
   background-size: 50px 50px;
 }
 

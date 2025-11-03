@@ -2,7 +2,7 @@ function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative bg-black border-t border-neon-blue-500/30 py-8 overflow-hidden">
+    <footer className="relative bg-gray-200 dark:bg-black border-t border-blue-500/30 py-8 overflow-hidden">
       {/* Animated background - lower opacity */}
       <div className="absolute top-0 left-1/4 w-64 h-64 bg-neon-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-[0.01] animate-pulse-slow"></div>
       <div className="absolute top-0 right-1/4 w-64 h-64 bg-neon-blue-600 rounded-full mix-blend-multiply filter blur-3xl opacity-[0.01] animate-pulse-slow"></div>

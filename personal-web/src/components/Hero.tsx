@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import OptimizedImage from './OptimizedImage';
 
@@ -11,9 +11,7 @@ function Hero() {
   
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
-  const sectionRef = useRef<HTMLDivElement>(null);
   const { ref: contentRef, isVisible: contentVisible } = useScrollAnimation(0.2, false);
 
   useEffect(() => {
@@ -28,44 +26,13 @@ function Hero() {
     return () => clearInterval(interval);
   }, [interests.length]);
 
-  // Mouse tracking for parallax effect
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (sectionRef.current) {
-        const rect = sectionRef.current.getBoundingClientRect();
-        const x = (e.clientX - rect.left - rect.width / 2) / rect.width;
-        const y = (e.clientY - rect.top - rect.height / 2) / rect.height;
-        setMousePosition({ x, y });
-      }
-    };
 
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
 
   return (
     <section 
-      ref={sectionRef}
       id="home" 
-      className="min-h-screen flex items-center justify-center relative overflow-hidden cyber-grid py-16 sm:py-20"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden cyber-grid py-16 sm:py-20 bg-gray-200 dark:bg-black"
     >
-      {/* Floating particles */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(8)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 bg-neon-blue-500 rounded-full opacity-50"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animation: `float ${5 + Math.random() * 10}s linear infinite`,
-              animationDelay: `${Math.random() * 5}s`,
-              willChange: 'transform'
-            }}
-          />
-        ))}
-      </div>
-      
       <div 
         ref={contentRef as React.RefObject<HTMLDivElement>}
         className={`relative z-10 px-4 max-w-6xl mx-auto w-full transition-all duration-1000 ${
@@ -76,10 +43,7 @@ function Hero() {
           {/* Photo Section */}
           <div className="flex justify-center order-1 md:order-2">
             <div 
-              className="relative transition-transform duration-300 ease-out w-48 h-48 sm:w-56 sm:h-56 md:w-80 md:h-80"
-              style={{
-                transform: `perspective(1000px) rotateY(${mousePosition.x * 10}deg) rotateX(${mousePosition.y * -10}deg)`
-              }}
+              className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-80 md:h-80"
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
             >
@@ -151,17 +115,17 @@ function Hero() {
           {/* Text Section */}
           <div className="text-center md:text-left order-2 md:order-1">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-3 sm:mb-4">
-              <span className="text-white">Greetings, I'm </span>
+              <span className="text-gray-900 dark:text-white">Greetings, I'm </span>
               <span className="neon-text">Alexander Christhian</span>
             </h1>
-            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-gray-300 mb-4 sm:mb-6">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-gray-600 dark:text-gray-300 mb-4 sm:mb-6">
               Computer Engineering Student
             </h2>
             
             {/* Animated switching text */}
             <div className="mb-6 sm:mb-8 min-h-[60px] sm:min-h-[80px] md:min-h-[80px] flex items-center justify-center md:justify-start">
               <div className="relative flex flex-wrap items-center justify-center md:justify-start gap-x-2">
-                <span className="text-sm sm:text-base md:text-lg lg:text-2xl text-gray-400">Passionate about</span>
+                <span className="text-sm sm:text-base md:text-lg lg:text-2xl text-gray-500 dark:text-gray-400">Passionate about</span>
                 <span 
                   className={`
                     text-sm sm:text-base md:text-lg lg:text-2xl font-bold

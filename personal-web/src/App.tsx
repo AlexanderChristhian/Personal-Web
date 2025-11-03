@@ -5,11 +5,13 @@ import Journey from './components/Journey'
 import Projects from './components/Projects'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import { ThemeProvider } from './contexts/ThemeContext'
 import './App.css'
 
 function App() {
   return (
-    <div className="min-h-screen bg-black text-white relative overflow-hidden">
+    <ThemeProvider>
+      <div className="min-h-screen bg-gray-200 dark:bg-black text-gray-900 dark:text-white relative overflow-hidden">
       {/* Global floating particles for all pages */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
         {[...Array(20)].map((_, i) => (
@@ -38,6 +40,7 @@ function App() {
         <Footer />
       </div>
     </div>
+    </ThemeProvider>
   )
 }
 

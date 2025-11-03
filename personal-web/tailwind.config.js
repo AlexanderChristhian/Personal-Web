@@ -4,6 +4,7 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}", // This scans all files in the src folder
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
@@ -28,9 +29,9 @@ export default {
         }
       },
       boxShadow: {
-        'neon': '0 0 5px theme("colors.neon-blue.500"), 0 0 20px theme("colors.neon-blue.500")',
-        'neon-sm': '0 0 2px theme("colors.neon-blue.500"), 0 0 10px theme("colors.neon-blue.500")',
-        'neon-lg': '0 0 10px theme("colors.neon-blue.500"), 0 0 40px theme("colors.neon-blue.500"), 0 0 80px theme("colors.neon-blue.500")',
+        'neon': '0 0 10px rgba(96, 165, 250, 0.15), 0 0 20px rgba(96, 165, 250, 0.1)',
+        'neon-sm': '0 0 5px rgba(96, 165, 250, 0.1), 0 0 10px rgba(96, 165, 250, 0.05)',
+        'neon-lg': '0 0 15px rgba(96, 165, 250, 0.2), 0 0 30px rgba(96, 165, 250, 0.15)',
       },
       animation: {
         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
@@ -39,8 +40,8 @@ export default {
       },
       keyframes: {
         glow: {
-          '0%': { boxShadow: '0 0 5px #00a3ff, 0 0 10px #00a3ff, 0 0 15px #00a3ff' },
-          '100%': { boxShadow: '0 0 10px #00a3ff, 0 0 20px #00a3ff, 0 0 30px #00a3ff' },
+          '0%': { boxShadow: '0 0 5px rgba(96, 165, 250, 0.1), 0 0 10px rgba(96, 165, 250, 0.05)' },
+          '100%': { boxShadow: '0 0 10px rgba(96, 165, 250, 0.15), 0 0 15px rgba(96, 165, 250, 0.1)' },
         }
       }
     },

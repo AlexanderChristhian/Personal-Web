@@ -109,7 +109,7 @@ const Journey = () => {
     <section 
       ref={sectionRef}
       id="journey" 
-      className="min-h-screen py-20 px-4 relative overflow-hidden cyber-grid"
+      className="min-h-screen py-20 px-4 relative overflow-hidden cyber-grid bg-gray-200 dark:bg-black"
     >
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Header */}
@@ -122,7 +122,7 @@ const Journey = () => {
           <h2 className="text-5xl font-bold mb-4">
             <span className="neon-text">My Journey</span>
           </h2>
-          <p className="text-gray-400 text-lg">
+          <p className="text-gray-600 dark:text-gray-400 text-lg">
             A timeline of my academic and professional experiences
           </p>
         </div>
@@ -130,13 +130,13 @@ const Journey = () => {
         {/* Timeline */}
         <div className="relative">
           {/* Vertical line - hidden on mobile */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-neon-blue-500 via-neon-blue-400 to-neon-blue-500 opacity-30 hidden md:block"></div>
+          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-blue-500 via-blue-400 to-blue-500 opacity-30 hidden md:block"></div>
           
           {/* Glowing dot at top - hidden on mobile */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 w-4 h-4 bg-neon-blue-400 rounded-full shadow-neon animate-pulse-slow hidden md:block"></div>
+          <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 w-4 h-4 bg-blue-500 rounded-full shadow-lg shadow-blue-500/50 animate-pulse-slow hidden md:block"></div>
           
           {/* Glowing dot at bottom - hidden on mobile */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 -bottom-4 w-4 h-4 bg-neon-blue-400 rounded-full shadow-neon animate-pulse-slow hidden md:block"></div>
+          <div className="absolute left-1/2 transform -translate-x-1/2 -bottom-4 w-4 h-4 bg-blue-500 rounded-full shadow-lg shadow-blue-500/50 animate-pulse-slow hidden md:block"></div>
 
           {/* Journey items */}
           <div className="space-y-8 md:space-y-12">
@@ -154,20 +154,20 @@ const Journey = () => {
               >
                 {/* Content card */}
                 <div className={`w-full md:w-5/12 ${index % 2 === 0 ? 'md:pr-12 md:text-right' : 'md:pl-12 md:text-left'} flex items-center mb-4 md:mb-0`}>
-                  <div className="bg-cyber-black-100/50 backdrop-blur-sm border border-neon-blue-500/30 rounded-lg p-4 sm:p-6 hover:border-neon-blue-500 transition-all duration-300 hover:shadow-neon group-hover:scale-105 w-full">
+                  <div className="bg-gray-100 dark:bg-cyber-black-100/50 backdrop-blur-sm border border-blue-500/30 rounded-lg p-4 sm:p-6 hover:border-blue-500 transition-all duration-500 hover:shadow-lg hover:shadow-blue-500/30 group-hover:scale-105 w-full">
                     <div className={`inline-block px-3 py-1 rounded-full text-xs sm:text-sm font-semibold mb-3 bg-gradient-to-r ${getTypeColor(item.type)} text-white`}>
                       {item.year}
                     </div>
-                    <h3 className="text-xl sm:text-2xl font-bold text-neon-blue-400 mb-2">
+                    <h3 className="text-xl sm:text-2xl font-bold text-blue-600 dark:text-blue-400 mb-2">
                       {item.title}
                     </h3>
-                    <p className="text-base sm:text-lg text-gray-300 mb-3 font-semibold">
+                    <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 mb-3 font-semibold">
                       {item.organization}
                     </p>
-                    <ul className={`text-sm sm:text-base text-gray-400 leading-relaxed space-y-2 ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}>
+                    <ul className={`text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed space-y-2 ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}>
                       {item.description.map((point, idx) => (
                         <li key={idx} className={`flex items-start gap-2 ${index % 2 === 0 ? 'md:flex-row-reverse' : 'md:flex-row'}`}>
-                          <span className="text-neon-blue-400 mt-1">•</span>
+                          <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
                           <span className="flex-1">{point}</span>
                         </li>
                       ))}
@@ -177,12 +177,12 @@ const Journey = () => {
 
                 {/* Center node - hidden on mobile */}
                 <div className="hidden md:flex w-2/12 justify-center items-center relative z-10">
-                  <div className="w-6 h-6 rounded-full bg-neon-blue-500 shadow-neon group-hover:scale-125 transition-transform duration-300 group-hover:shadow-neon-lg"></div>
+                  <div className="w-6 h-6 rounded-full bg-blue-600 dark:bg-blue-500 shadow-lg shadow-blue-500/50 group-hover:scale-125 transition-transform duration-500"></div>
                 </div>
 
                 {/* Image on the other side */}
                 <div className={`w-full md:w-5/12 ${index % 2 === 0 ? 'md:pl-12' : 'md:pr-12'} flex ${index % 2 === 0 ? 'md:justify-start' : 'md:justify-end'}`}>
-                  <div className="rounded-lg overflow-hidden border-2 border-neon-blue-500/50 shadow-neon group-hover:border-neon-blue-500 group-hover:shadow-neon-lg transition-all duration-300 group-hover:scale-105 w-full">
+                  <div className="rounded-lg overflow-hidden border-2 border-blue-500/50 shadow-lg shadow-blue-500/30 group-hover:border-blue-500 transition-all duration-500 group-hover:scale-105 w-full">
                     <OptimizedImage 
                       src={item.image} 
                       alt={item.organization}

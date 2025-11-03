@@ -66,7 +66,7 @@ function About() {
     <section 
       ref={sectionRef}
       id="about" 
-      className="min-h-screen py-20 px-4 relative overflow-hidden cyber-grid"
+      className="min-h-screen py-20 px-4 relative overflow-hidden cyber-grid bg-gray-200 dark:bg-black"
     >
       {/* Floating tech icons in background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -117,7 +117,7 @@ function About() {
             <div className="absolute -left-8 top-1/2 -translate-y-1/2 w-16 h-0.5 bg-gradient-to-r from-transparent to-neon-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             <div className="absolute -right-8 top-1/2 -translate-y-1/2 w-16 h-0.5 bg-gradient-to-l from-transparent to-neon-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             
-            <p className="text-2xl md:text-3xl text-gray-200 leading-relaxed mb-8 text-center transition-all duration-500 group-hover:text-gray-100">
+            <p className="text-2xl md:text-3xl text-gray-700 dark:text-gray-200 leading-relaxed mb-8 text-center transition-all duration-500 group-hover:text-gray-800 dark:group-hover:text-gray-100">
               I'm a passionate <span className="neon-text font-semibold hover:scale-110 inline-block transition-transform duration-300">Computer Engineering student</span> with 
               expertise spanning the full technology stack from low-level hardware design and embedded systems 
               to modern web applications and cloud infrastructure.
@@ -150,10 +150,10 @@ function About() {
                 key={category}
                 onClick={() => setActiveCategory(category)}
                 className={`
-                  px-3 sm:px-4 md:px-6 py-2 md:py-3 rounded-xl font-semibold text-xs sm:text-sm transition-all duration-300 transform hover:scale-105 relative overflow-hidden
+                  px-3 sm:px-4 md:px-6 py-2 md:py-3 rounded-xl font-semibold text-xs sm:text-sm transition-all duration-500 transform hover:scale-105 relative overflow-hidden
                   ${activeCategory === category
-                    ? 'bg-neon-blue-500 text-black shadow-neon'
-                    : 'bg-black/40 backdrop-blur-sm text-neon-blue-400 border-2 border-neon-blue-500/30 hover:border-neon-blue-500/60 hover:bg-neon-blue-500/10'
+                    ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/50'
+                    : 'bg-white dark:bg-black/40 backdrop-blur-sm text-blue-600 dark:text-blue-400 border-2 border-blue-500/30 hover:border-blue-500/60 hover:bg-blue-500/10'
                   }
                 `}
               >
@@ -176,7 +176,7 @@ function About() {
               {techStack[activeCategory as keyof typeof techStack].map((tech, index) => (
                 <div
                   key={tech.name}
-                  className="group relative flex flex-col items-center gap-2 sm:gap-3 p-3 sm:p-4 md:p-5 rounded-xl sm:rounded-2xl bg-black/40 backdrop-blur-md border-2 border-neon-blue-500/30 hover:border-neon-blue-500/80 hover:bg-black/60 transition-all duration-500 cursor-pointer overflow-hidden"
+                  className="group relative flex flex-col items-center gap-2 sm:gap-3 p-3 sm:p-4 md:p-5 rounded-xl sm:rounded-2xl bg-gray-100 dark:bg-black/40 backdrop-blur-md border-2 border-blue-500/30 hover:border-blue-500/80 hover:bg-white dark:hover:bg-black/60 transition-all duration-500 cursor-pointer overflow-hidden"
                   style={{
                     animation: `fadeInUp 0.5s ease-out ${index * 0.05}s backwards`
                   }}
@@ -211,7 +211,7 @@ function About() {
                     />
                   </div>
                   
-                  <span className="relative z-10 text-[10px] sm:text-xs text-gray-300 text-center group-hover:text-neon-blue-200 transition-all duration-300 font-medium group-hover:font-bold leading-tight">
+                  <span className="relative z-10 text-[10px] sm:text-xs text-gray-700 dark:text-gray-300 text-center group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-all duration-500 font-medium group-hover:font-bold leading-tight">
                     {tech.name}
                   </span>
                   

@@ -49,7 +49,7 @@ function Contact() {
   ];
 
   return (
-    <section id="contact" className="min-h-screen py-20 px-6 relative overflow-hidden cyber-grid">
+    <section id="contact" className="min-h-screen py-20 px-6 relative overflow-hidden cyber-grid bg-gray-200 dark:bg-black">
       {/* Floating code symbols */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {['@', '#', '$', '%', '&'].map((symbol, i) => (
@@ -78,7 +78,7 @@ function Contact() {
           <span className="neon-text">Get In Touch</span>
         </h2>
 
-        <p className={`text-center text-gray-400 text-base sm:text-lg mb-12 sm:mb-16 max-w-2xl mx-auto px-4 transition-all duration-1000 delay-200 ${
+        <p className={`text-center text-gray-600 dark:text-gray-400 text-base sm:text-lg mb-12 sm:mb-16 max-w-2xl mx-auto px-4 transition-all duration-1000 delay-200 ${
           titleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
           I'm always interested in hearing about new projects and opportunities. Feel free to reach out!
@@ -106,7 +106,7 @@ function Contact() {
               <div className={`absolute -inset-1 bg-gradient-to-r ${contact.color} rounded-2xl blur-lg opacity-0 group-hover:opacity-75 transition-all duration-500`}></div>
               
               {/* Card content */}
-              <div className={`relative bg-gray-900/90 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border-2 border-gray-800 group-hover:border-neon-blue transition-all duration-500 transform group-hover:scale-105 group-hover:-translate-y-2 ${contact.hoverColor} hover:shadow-2xl`}>
+              <div className={`relative bg-gray-100 dark:bg-gray-900/90 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border-2 border-gray-300 dark:border-gray-800 group-hover:border-blue-500 transition-all duration-500 transform group-hover:scale-105 group-hover:-translate-y-2 ${contact.hoverColor} hover:shadow-2xl`}>
                 {/* Icon container */}
                 <div className="flex justify-center mb-4 sm:mb-6">
                   <div className={`relative transition-all duration-500 ${
@@ -122,12 +122,12 @@ function Contact() {
                 </div>
 
                 {/* Label */}
-                <h3 className="text-xl sm:text-2xl font-bold text-center text-white mb-2 sm:mb-3 group-hover:text-neon-blue transition-colors duration-300">
+                <h3 className="text-xl sm:text-2xl font-bold text-center text-gray-900 dark:text-white mb-2 sm:mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-500">
                   {contact.label}
                 </h3>
 
                 {/* Value */}
-                <p className="text-center text-gray-400 text-xs sm:text-sm group-hover:text-gray-300 transition-colors duration-300 break-all px-2">
+                <p className="text-center text-gray-600 dark:text-gray-400 text-xs sm:text-sm group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors duration-300 break-all px-2">
                   {contact.value}
                 </p>
 
