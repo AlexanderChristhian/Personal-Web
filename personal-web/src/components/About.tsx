@@ -11,7 +11,7 @@ function About() {
   const { ref: categoriesRef, isVisible: categoriesVisible } = useScrollAnimation(0.2, false);
   const { ref: tabsRef, isVisible: tabsVisible } = useScrollAnimation(0.2, false);
   const { ref: techGridRef, isVisible: techGridVisible } = useScrollAnimation(0.1, false);
-  
+
   const techStack = {
     "Programming Languages": [
       { name: "C", icon: "https://upload.wikimedia.org/wikipedia/commons/1/18/C_Programming_Language.svg" },
@@ -63,87 +63,80 @@ function About() {
   };
 
   return (
-    <section 
+    <section
       ref={sectionRef}
-      id="about" 
+      id="about"
       className="min-h-screen py-20 px-4 relative overflow-hidden cyber-grid bg-gray-200 dark:bg-black"
     >
-      {/* Floating tech icons in background */}
+      {/* Subtle static decorations */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {['{ }', '</>', '[ ]', '( )', '</>'].map((symbol, i) => (
+        {['{ }', '</>', '[ ]'].map((symbol, i) => (
           <div
             key={i}
-            className="absolute text-neon-blue-500/10 text-4xl font-mono"
+            className="absolute text-neon-blue-500/5 text-4xl font-mono"
             style={{
-              left: `${15 + i * 20}%`,
-              top: `${10 + (i % 3) * 30}%`,
-              animation: `float ${8 + i * 2}s ease-in-out infinite`,
-              animationDelay: `${i * 0.5}s`,
-              willChange: 'transform'
+              left: `${20 + i * 30}%`,
+              top: `${15 + (i % 2) * 40}%`,
             }}
           >
             {symbol}
           </div>
         ))}
       </div>
-      
+
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Title with enhanced styling and animation */}
-        <div 
+        <div
           ref={titleRef as React.RefObject<HTMLDivElement>}
-          className={`text-center mb-20 transition-all duration-1000 ${
-            titleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
+          className={`text-center mb-20 transition-all duration-1000 ${titleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}
         >
-          <h2 
+          <h2
             className="text-5xl md:text-6xl font-bold mb-4"
           >
             <span className="neon-text inline-block hover:scale-110 transition-transform duration-300">About Me</span>
           </h2>
-          <div 
+          <div
             className="h-1 bg-gradient-to-r from-transparent via-neon-blue-500 to-transparent mx-auto w-32 md:w-64"
           ></div>
         </div>
-        
+
         {/* Intro - Full width, no box with wave animation */}
-        <div 
+        <div
           ref={introRef as React.RefObject<HTMLDivElement>}
-          className={`mb-16 max-w-5xl mx-auto group transition-all duration-1000 delay-200 ${
-            introVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
+          className={`mb-16 max-w-5xl mx-auto group transition-all duration-1000 delay-200 ${introVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}
         >
           <div className="relative">
             {/* Animated circuit lines */}
             <div className="absolute -left-8 top-1/2 -translate-y-1/2 w-16 h-0.5 bg-gradient-to-r from-transparent to-neon-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             <div className="absolute -right-8 top-1/2 -translate-y-1/2 w-16 h-0.5 bg-gradient-to-l from-transparent to-neon-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            
+
             <p className="text-2xl md:text-3xl text-gray-700 dark:text-gray-200 leading-relaxed mb-8 text-center transition-all duration-500 group-hover:text-gray-800 dark:group-hover:text-gray-100">
-              I'm a passionate <span className="neon-text font-semibold hover:scale-110 inline-block transition-transform duration-300">Computer Engineering student</span> with 
-              expertise spanning the full technology stack from low-level hardware design and embedded systems 
+              I'm a passionate <span className="neon-text font-semibold hover:scale-110 inline-block transition-transform duration-300">Computer Engineering student</span> with
+              expertise spanning the full technology stack from low-level hardware design and embedded systems
               to modern web applications and cloud infrastructure.
             </p>
           </div>
         </div>
-        
+
         {/* Tech Stack Section */}
         <div className="mb-12">
-          <div 
+          <div
             ref={categoriesRef as React.RefObject<HTMLDivElement>}
-            className={`text-center mb-10 transition-all duration-1000 delay-300 ${
-              categoriesVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
-            }`}
+            className={`text-center mb-10 transition-all duration-1000 delay-300 ${categoriesVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
+              }`}
           >
             <h3 className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-neon-blue-400 via-neon-blue-500 to-neon-blue-400 inline-block mb-4">
               Tech Stack & Tools
             </h3>
           </div>
-          
+
           {/* Category Tabs */}
-          <div 
+          <div
             ref={tabsRef as React.RefObject<HTMLDivElement>}
-            className={`flex flex-wrap justify-center gap-2 md:gap-3 mb-10 px-4 transition-all duration-1000 delay-400 ${
-              tabsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}
+            className={`flex flex-wrap justify-center gap-2 md:gap-3 mb-10 px-4 transition-all duration-1000 delay-400 ${tabsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`}
           >
             {Object.keys(techStack).map((category) => (
               <button
@@ -158,19 +151,18 @@ function About() {
                 `}
               >
                 {activeCategory === category && (
-                  <div className="absolute inset-0 bg-gradient-to-r from-neon-blue-400 via-neon-blue-500 to-neon-blue-400 animate-pulse-slow"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-neon-blue-400 via-neon-blue-500 to-neon-blue-400"></div>
                 )}
                 <span className="relative z-10">{category}</span>
               </button>
             ))}
           </div>
-          
+
           {/* Tech Grid - Transparent background */}
-          <div 
+          <div
             ref={techGridRef as React.RefObject<HTMLDivElement>}
-            className={`min-h-[350px] transition-all duration-1000 delay-500 px-4 ${
-              techGridVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}
+            className={`min-h-[350px] transition-all duration-1000 delay-500 px-4 ${techGridVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`}
           >
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-3 sm:gap-4 md:gap-6 max-w-6xl mx-auto">
               {techStack[activeCategory as keyof typeof techStack].map((tech, index) => (
@@ -186,17 +178,12 @@ function About() {
                 >
                   {/* Glow effect on hover with ripple */}
                   <div className="absolute inset-0 bg-gradient-to-br from-neon-blue-500/0 via-neon-blue-500/0 to-neon-blue-500/0 group-hover:from-neon-blue-500/10 group-hover:via-neon-blue-500/5 group-hover:to-transparent rounded-2xl transition-all duration-500"></div>
-                  
-                  {/* Animated border gradient */}
-                  <div className="absolute -inset-1 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10">
-                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-neon-blue-500/60 via-neon-blue-300/60 to-neon-blue-500/60 blur-md animate-pulse-slow"></div>
+
+                  {/* Animated border on hover - simplified */}
+                  <div className="absolute -inset-1 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10">
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-neon-blue-500/40 via-neon-blue-300/40 to-neon-blue-500/40 blur-md"></div>
                   </div>
-                  
-                  {/* Ripple effect on hover */}
-                  <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                    <div className="absolute inset-0 rounded-2xl border-2 border-neon-blue-400 animate-ping"></div>
-                  </div>
-                  
+
                   {/* Content */}
                   <div className="relative z-10 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 flex items-center justify-center">
                     <OptimizedImage
@@ -210,11 +197,11 @@ function About() {
                       objectFit="contain"
                     />
                   </div>
-                  
+
                   <span className="relative z-10 text-[10px] sm:text-xs text-gray-700 dark:text-gray-300 text-center group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-all duration-500 font-medium group-hover:font-bold leading-tight">
                     {tech.name}
                   </span>
-                  
+
                   {/* Corner accents */}
                   <div className="absolute top-0 right-0 w-6 h-6 border-t-2 border-r-2 border-neon-blue-500/0 group-hover:border-neon-blue-400 rounded-tr-2xl transition-all duration-300"></div>
                   <div className="absolute bottom-0 left-0 w-6 h-6 border-b-2 border-l-2 border-neon-blue-500/0 group-hover:border-neon-blue-400 rounded-bl-2xl transition-all duration-300"></div>
@@ -223,7 +210,7 @@ function About() {
             </div>
           </div>
         </div>
-        
+
       </div>
     </section>
   );

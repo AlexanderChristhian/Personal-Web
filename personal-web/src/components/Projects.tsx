@@ -140,10 +140,10 @@ export default function Projects() {
 
   const handleProjectChange = (direction: 'next' | 'prev') => {
     if (isTransitioning) return;
-    
+
     setIsTransitioning(true);
     setSlideDirection(direction === 'next' ? 'left' : 'right');
-    
+
     setTimeout(() => {
       if (direction === 'next') {
         setActiveProjectIndex((prev) => (prev + 1) % projects.length);
@@ -157,11 +157,11 @@ export default function Projects() {
 
   const handleImageChange = (direction: 'next' | 'prev') => {
     if (isImageTransitioning) return;
-    
+
     const currentProject = projects[activeProjectIndex];
     setIsImageTransitioning(true);
     setImageSlideDirection(direction === 'next' ? 'left' : 'right');
-    
+
     setTimeout(() => {
       if (direction === 'next') {
         setActiveImageIndex((prev) => (prev + 1) % currentProject.images.length);
@@ -177,17 +177,15 @@ export default function Projects() {
 
   return (
     <section id="projects" className="min-h-screen py-20 px-6 relative overflow-hidden cyber-grid bg-gray-200 dark:bg-black">
-      {/* Floating tech symbols */}
+      {/* Subtle static decorations */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {['{ }', '</>', '[ ]', '( )', '</>'].map((symbol, i) => (
+        {['{ }', '</>', '[ ]'].map((symbol, i) => (
           <div
             key={i}
-            className="absolute text-neon-blue-500/10 text-4xl font-mono animate-float"
+            className="absolute text-neon-blue-500/5 text-4xl font-mono"
             style={{
-              left: `${15 + i * 20}%`,
-              top: `${10 + (i % 3) * 30}%`,
-              animation: `float ${8 + i * 2}s ease-in-out infinite`,
-              animationDelay: `${i * 0.5}s`
+              left: `${20 + i * 30}%`,
+              top: `${15 + (i % 2) * 40}%`,
             }}
           >
             {symbol}
@@ -196,11 +194,10 @@ export default function Projects() {
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
-        <h2 
+        <h2
           ref={titleRef.ref}
-          className={`text-5xl font-bold mb-16 text-center text-blue-600 dark:text-blue-400 transition-all duration-1000 ${
-            titleRef.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
+          className={`text-5xl font-bold mb-16 text-center text-blue-600 dark:text-blue-400 transition-all duration-1000 ${titleRef.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}
         >
           Featured <span className="text-gray-900 dark:text-white">Projects</span>
         </h2>
@@ -239,11 +236,10 @@ export default function Projects() {
                       }, 300);
                     }
                   }}
-                  className={`h-2 rounded-full transition-all duration-500 cursor-pointer ${
-                    idx === activeProjectIndex 
-                      ? 'w-8 bg-blue-600 dark:bg-blue-400' 
+                  className={`h-2 rounded-full transition-all duration-500 cursor-pointer ${idx === activeProjectIndex
+                      ? 'w-8 bg-blue-600 dark:bg-blue-400'
                       : 'w-2 bg-gray-400 dark:bg-gray-600 hover:bg-blue-400 dark:hover:bg-gray-400'
-                  }`}
+                    }`}
                 />
               ))}
             </div>
@@ -262,19 +258,17 @@ export default function Projects() {
         </div>
 
         {/* Single Project Display with Slide Animation */}
-        <div 
+        <div
           ref={contentRef.ref}
-          className={`transition-all duration-500 ${
-            contentRef.isVisible ? 'opacity-100' : 'opacity-0'
-          }`}
+          className={`transition-all duration-500 ${contentRef.isVisible ? 'opacity-100' : 'opacity-0'
+            }`}
         >
-          <div className={`transition-all duration-300 ${
-            isTransitioning 
-              ? slideDirection === 'left' 
-                ? 'opacity-0 -translate-x-20' 
+          <div className={`transition-all duration-300 ${isTransitioning
+              ? slideDirection === 'left'
+                ? 'opacity-0 -translate-x-20'
                 : 'opacity-0 translate-x-20'
               : 'opacity-100 translate-x-0'
-          }`}>
+            }`}>
             {/* Split Layout - Details Left, Image Right */}
             <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 items-center">
               {/* Left Side - Project Information */}
@@ -312,7 +306,7 @@ export default function Projects() {
                 {/* Description Points */}
                 <div className="mb-4 sm:mb-6 space-y-2 sm:space-y-3">
                   {currentProject.description.map((desc, descIdx) => (
-                    <p 
+                    <p
                       key={descIdx}
                       className="text-gray-700 dark:text-gray-300 text-sm sm:text-base flex items-start gap-2 sm:gap-3"
                     >
@@ -363,11 +357,11 @@ export default function Projects() {
                 {/* Pure Blue Neon Backlight Glow - matching other pages */}
                 <div className="absolute -inset-8 bg-neon-blue-500/20 blur-3xl opacity-60 rounded-full hidden lg:block" />
                 <div className="absolute -inset-6 bg-neon-blue-400/15 blur-2xl opacity-50 rounded-full animate-pulse-slow hidden lg:block" />
-                
+
                 {/* Skewed Image Container - skew disabled on mobile */}
-                <div 
+                <div
                   className="relative group transition-all duration-700 hover:scale-105"
-                  style={{ 
+                  style={{
                     transform: window.innerWidth >= 1024 ? 'perspective(1200px) rotateY(-8deg) rotateX(2deg)' : 'none',
                     transformStyle: 'preserve-3d'
                   }}
@@ -375,13 +369,12 @@ export default function Projects() {
                   <div className="relative rounded-2xl overflow-hidden border-2 border-neon-blue/60 shadow-2xl shadow-neon-blue/40 transition-all duration-500 group-hover:shadow-neon-blue/80 group-hover:border-neon-blue group-hover:-translate-y-2 bg-gray-950">
                     {/* Image with slide animation */}
                     <div className="relative overflow-hidden">
-                      <div className={`transition-all duration-300 ${
-                        isImageTransitioning
+                      <div className={`transition-all duration-300 ${isImageTransitioning
                           ? imageSlideDirection === 'left'
                             ? 'opacity-0 -translate-x-full'
                             : 'opacity-0 translate-x-full'
                           : 'opacity-100 translate-x-0'
-                      }`}>
+                        }`}>
                         <OptimizedImage
                           src={currentProject.images[activeImageIndex]}
                           alt={`${currentProject.title} screenshot ${activeImageIndex + 1}`}
@@ -390,10 +383,10 @@ export default function Projects() {
                           objectFit="cover"
                         />
                       </div>
-                      
+
                       {/* Gradient overlay for depth */}
                       <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-neon-blue/10 pointer-events-none" />
-                      
+
                       {/* Edge highlights - removed white, now neon blue */}
                       <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                         <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-neon-blue to-transparent" />
@@ -404,16 +397,16 @@ export default function Projects() {
                     </div>
                   </div>
 
-                  {/* Additional corner accents - Blue only */}
-                  <div className="absolute -top-2 -right-2 w-32 h-32 bg-neon-blue/15 blur-2xl rounded-full animate-pulse-slow" />
-                  <div className="absolute -bottom-2 -left-2 w-32 h-32 bg-neon-blue/10 blur-2xl rounded-full animate-pulse-slow" style={{ animationDelay: '1s' }} />
+                  {/* Corner accents - static */}
+                  <div className="absolute -top-2 -right-2 w-32 h-32 bg-neon-blue/10 blur-2xl rounded-full" />
+                  <div className="absolute -bottom-2 -left-2 w-32 h-32 bg-neon-blue/5 blur-2xl rounded-full" />
                 </div>
 
                 {/* Image Navigation - Below and Skewed */}
                 {currentProject.images.length > 1 && (
-                  <div 
+                  <div
                     className="mt-4 sm:mt-6 flex gap-2 sm:gap-3 justify-center"
-                    style={{ 
+                    style={{
                       transform: window.innerWidth >= 1024 ? 'perspective(1200px) rotateY(-8deg) rotateX(2deg)' : 'none',
                       transformStyle: 'preserve-3d'
                     }}
@@ -443,11 +436,10 @@ export default function Projects() {
                               }, 300);
                             }
                           }}
-                          className={`h-2 sm:h-2.5 rounded-full transition-all duration-500 ${
-                            imgIdx === activeImageIndex 
-                              ? 'w-8 sm:w-10 bg-blue-600 dark:bg-blue-400 shadow-lg shadow-blue-500/50' 
+                          className={`h-2 sm:h-2.5 rounded-full transition-all duration-500 ${imgIdx === activeImageIndex
+                              ? 'w-8 sm:w-10 bg-blue-600 dark:bg-blue-400 shadow-lg shadow-blue-500/50'
                               : 'w-2 sm:w-2.5 bg-gray-400 dark:bg-gray-500 hover:bg-blue-400 dark:hover:bg-blue-500/50'
-                          }`}
+                            }`}
                         />
                       ))}
                     </div>

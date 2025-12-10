@@ -8,7 +8,7 @@ function Hero() {
     "Hardware Engineering",
     "Network Systems"
   ];
-  
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
@@ -29,20 +29,19 @@ function Hero() {
 
 
   return (
-    <section 
-      id="home" 
+    <section
+      id="home"
       className="min-h-screen flex items-center justify-center relative overflow-hidden cyber-grid py-16 sm:py-20 bg-gray-200 dark:bg-black"
     >
-      <div 
+      <div
         ref={contentRef as React.RefObject<HTMLDivElement>}
-        className={`relative z-10 px-4 max-w-6xl mx-auto w-full transition-all duration-1000 ${
-          contentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}
+        className={`relative z-10 px-4 max-w-6xl mx-auto w-full transition-all duration-1000 ${contentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
       >
         <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
           {/* Photo Section */}
           <div className="flex justify-center order-1 md:order-2">
-            <div 
+            <div
               className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-80 md:h-80"
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
@@ -52,62 +51,48 @@ function Hero() {
                 <svg className="w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                   <defs>
                     <pattern id="hexagons" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                      <polygon points="10,0 15,5 15,15 10,20 5,15 5,5" fill="none" stroke="#00a3ff" strokeWidth="0.5"/>
+                      <polygon points="10,0 15,5 15,15 10,20 5,15 5,5" fill="none" stroke="#00a3ff" strokeWidth="0.5" />
                     </pattern>
                   </defs>
                   <rect width="100" height="100" fill="url(#hexagons)" />
                 </svg>
               </div>
-              
-              {/* Rotating border effect with enhanced animation */}
-              <div 
-                className={`absolute inset-0 rounded-full bg-gradient-to-r from-neon-blue-500 via-neon-blue-300 to-neon-blue-500 blur-md transition-all duration-300 ${isHovering ? 'opacity-100 scale-110' : 'opacity-75 scale-100'}`}
-                style={{ 
-                  animation: 'spin 3s linear infinite',
-                }}
+
+              {/* Static gradient glow border */}
+              <div
+                className={`absolute inset-0 rounded-full bg-gradient-to-r from-neon-blue-500 via-neon-blue-300 to-neon-blue-500 blur-md transition-opacity duration-300 ${isHovering ? 'opacity-80' : 'opacity-50'}`}
               ></div>
-              
-              <div className={`relative w-48 h-48 sm:w-56 sm:h-56 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-neon-blue-500 shadow-neon transition-all duration-500 ${isHovering ? 'scale-105 shadow-neon-lg' : 'scale-100'}`}>
-                <OptimizedImage 
-                  src="/Foto_Personal.jpg" 
-                  alt="Profile" 
+
+              <div className={`relative w-48 h-48 sm:w-56 sm:h-56 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-neon-blue-500 shadow-neon transition-shadow duration-300 ${isHovering ? 'shadow-neon-lg' : ''}`}>
+                <OptimizedImage
+                  src="/Foto_Personal.jpg"
+                  alt="Profile"
                   priority={true}
-                  className={`transition-transform duration-500 ${isHovering ? 'scale-110' : 'scale-100'}`}
+                  className=""
                   objectFit="cover"
                   objectPosition="center"
                 />
-                {/* Scanline effect on hover */}
-                {isHovering && (
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-neon-blue-500/20 to-transparent animate-pulse" style={{ animation: 'slideDown 2s ease-in-out infinite' }}></div>
-                )}
               </div>
-              
-              {/* Floating code brackets with 3D effect */}
-              <div 
-                className="absolute -top-1 -left-1 sm:-top-2 sm:-left-2 text-xl sm:text-2xl md:text-4xl neon-text animate-pulse font-mono"
+
+              {/* Static code brackets */}
+              <div
+                className="absolute -top-1 -left-1 sm:-top-2 sm:-left-2 text-xl sm:text-2xl md:text-4xl neon-text font-mono opacity-70"
               >&lt;/&gt;</div>
-              <div 
-                className="absolute -bottom-1 -right-1 sm:-bottom-2 sm:-right-2 text-xl sm:text-2xl md:text-4xl neon-text animate-pulse font-mono" 
-                style={{ animationDelay: '1s' }}
+              <div
+                className="absolute -bottom-1 -right-1 sm:-bottom-2 sm:-right-2 text-xl sm:text-2xl md:text-4xl neon-text font-mono opacity-70"
               >{ }</div>
-              
-              {/* Binary code streams with flow animation - hidden on mobile */}
-              <div 
-                className="absolute -right-16 top-10 opacity-30 text-neon-blue-500 text-xs font-mono hidden md:block"
-                style={{ animation: 'float 3s ease-in-out infinite' }}
-              >
-                <div className="animate-pulse">01010011</div>
-                <div className="animate-pulse" style={{ animationDelay: '0.2s' }}>01001111</div>
-                <div className="animate-pulse" style={{ animationDelay: '0.4s' }}>01000110</div>
+
+              {/* Static binary code decorations - hidden on mobile */}
+              <div className="absolute -right-16 top-10 opacity-20 text-neon-blue-500 text-xs font-mono hidden md:block">
+                <div>01010011</div>
+                <div>01001111</div>
+                <div>01000110</div>
               </div>
-              
-              <div 
-                className="absolute -left-16 bottom-10 opacity-30 text-neon-blue-500 text-xs font-mono hidden md:block" 
-                style={{ animation: 'float 3s ease-in-out infinite', animationDelay: '1.5s' }}
-              >
-                <div className="animate-pulse">01001000</div>
-                <div className="animate-pulse" style={{ animationDelay: '0.2s' }}>01010111</div>
-                <div className="animate-pulse" style={{ animationDelay: '0.4s' }}>01001110</div>
+
+              <div className="absolute -left-16 bottom-10 opacity-20 text-neon-blue-500 text-xs font-mono hidden md:block">
+                <div>01001000</div>
+                <div>01010111</div>
+                <div>01001110</div>
               </div>
             </div>
           </div>
@@ -121,24 +106,24 @@ function Hero() {
             <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-gray-600 dark:text-gray-300 mb-4 sm:mb-6">
               Computer Engineering Student
             </h2>
-            
+
             {/* Animated switching text */}
             <div className="mb-6 sm:mb-8 min-h-[60px] sm:min-h-[80px] md:min-h-[80px] flex items-center justify-center md:justify-start">
               <div className="relative flex flex-wrap items-center justify-center md:justify-start gap-x-2">
                 <span className="text-sm sm:text-base md:text-lg lg:text-2xl text-gray-500 dark:text-gray-400">Passionate about</span>
-                <span 
+                <span
                   className={`
                     text-sm sm:text-base md:text-lg lg:text-2xl font-bold
                     neon-text
                     transition-all duration-500 transform inline-block
-                    ${isAnimating 
-                      ? 'opacity-0 -translate-y-4 scale-90' 
+                    ${isAnimating
+                      ? 'opacity-0 -translate-y-4 scale-90'
                       : 'opacity-100 translate-y-0 scale-100'
                     }
                   `}
                   style={{
-                    textShadow: isAnimating 
-                      ? 'none' 
+                    textShadow: isAnimating
+                      ? 'none'
                       : '0 0 10px rgba(0, 163, 255, 0.8), 0 0 20px rgba(0, 163, 255, 0.6), 0 0 30px rgba(0, 163, 255, 0.4)',
                     filter: isAnimating ? 'blur(4px)' : 'blur(0px)'
                   }}
@@ -146,7 +131,7 @@ function Hero() {
                   {interests[currentIndex]}
                 </span>
                 {/* Animated underline */}
-                <div 
+                <div
                   className={`
                     absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-transparent via-neon-blue-500 to-transparent
                     transition-all duration-500
@@ -157,15 +142,15 @@ function Hero() {
             </div>
 
             <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-3 sm:gap-4 mt-6 sm:mt-8">
-              <a 
-                href="#projects" 
+              <a
+                href="#projects"
                 className="group px-6 sm:px-8 py-3 bg-neon-blue-500 text-black font-semibold rounded-lg hover:shadow-neon transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 relative overflow-hidden text-center"
               >
                 <span className="relative z-10">View Projects</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-neon-blue-400 to-neon-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </a>
-              <a 
-                href="#contact" 
+              <a
+                href="#contact"
                 className="group px-6 sm:px-8 py-3 border-2 border-neon-blue-500 text-neon-blue-500 font-semibold rounded-lg hover:bg-neon-blue-500 hover:text-black transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 relative overflow-hidden text-center"
               >
                 <span className="relative z-10">Contact Me</span>

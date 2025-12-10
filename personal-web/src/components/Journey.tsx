@@ -97,7 +97,7 @@ const Journey = () => {
   ];
 
   const getTypeColor = (type: string) => {
-    switch(type) {
+    switch (type) {
       case 'education': return 'from-neon-blue-400 to-neon-blue-600';
       case 'organization': return 'from-purple-400 to-purple-600';
       case 'professional': return 'from-cyan-400 to-cyan-600';
@@ -106,18 +106,17 @@ const Journey = () => {
   };
 
   return (
-    <section 
+    <section
       ref={sectionRef}
-      id="journey" 
+      id="journey"
       className="min-h-screen py-20 px-4 relative overflow-hidden cyber-grid bg-gray-200 dark:bg-black"
     >
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Header */}
-        <div 
+        <div
           ref={headerRef as React.RefObject<HTMLDivElement>}
-          className={`text-center mb-16 transition-all duration-1000 ${
-            headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'
-          }`}
+          className={`text-center mb-16 transition-all duration-1000 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'
+            }`}
         >
           <h2 className="text-5xl font-bold mb-4">
             <span className="neon-text">My Journey</span>
@@ -131,26 +130,24 @@ const Journey = () => {
         <div className="relative">
           {/* Vertical line - hidden on mobile */}
           <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-blue-500 via-blue-400 to-blue-500 opacity-30 hidden md:block"></div>
-          
+
           {/* Glowing dot at top - hidden on mobile */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 w-4 h-4 bg-blue-500 rounded-full shadow-lg shadow-blue-500/50 animate-pulse-slow hidden md:block"></div>
-          
+          <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 w-4 h-4 bg-blue-500 rounded-full shadow-lg shadow-blue-500/50 hidden md:block"></div>
+
           {/* Glowing dot at bottom - hidden on mobile */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 -bottom-4 w-4 h-4 bg-blue-500 rounded-full shadow-lg shadow-blue-500/50 animate-pulse-slow hidden md:block"></div>
+          <div className="absolute left-1/2 transform -translate-x-1/2 -bottom-4 w-4 h-4 bg-blue-500 rounded-full shadow-lg shadow-blue-500/50 hidden md:block"></div>
 
           {/* Journey items */}
           <div className="space-y-8 md:space-y-12">
             {journeyData.map((item, index) => (
-              <div 
+              <div
                 key={item.id}
                 ref={(el) => { itemRefs.current[index] = el; }}
-                className={`relative flex flex-col md:flex-row items-stretch transition-all duration-1000 ${
-                  index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                } group ${
-                  visibleItems.includes(index)
+                className={`relative flex flex-col md:flex-row items-stretch transition-all duration-1000 ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+                  } group ${visibleItems.includes(index)
                     ? 'opacity-100 translate-x-0'
                     : 'opacity-0'
-                }`}
+                  }`}
               >
                 {/* Content card */}
                 <div className={`w-full md:w-5/12 ${index % 2 === 0 ? 'md:pr-12 md:text-right' : 'md:pl-12 md:text-left'} flex items-center mb-4 md:mb-0`}>
@@ -183,8 +180,8 @@ const Journey = () => {
                 {/* Image on the other side */}
                 <div className={`w-full md:w-5/12 ${index % 2 === 0 ? 'md:pl-12' : 'md:pr-12'} flex ${index % 2 === 0 ? 'md:justify-start' : 'md:justify-end'}`}>
                   <div className="rounded-lg overflow-hidden border-2 border-blue-500/50 shadow-lg shadow-blue-500/30 group-hover:border-blue-500 transition-all duration-500 group-hover:scale-105 w-full">
-                    <OptimizedImage 
-                      src={item.image} 
+                    <OptimizedImage
+                      src={item.image}
                       alt={item.organization}
                       loading="lazy"
                       className="w-full h-48 sm:h-full"
