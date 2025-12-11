@@ -91,7 +91,7 @@ const Journey = () => {
         'Assigned as PIC of Digital System Design laboratory sessions',
         'Helping in various laboratory practicums activities',
       ],
-      image: '/Digilab/Foto_Digilab.png',
+      image: '/Digilab/Foto_Digilab.jpg',
       type: 'professional'
     }
   ];

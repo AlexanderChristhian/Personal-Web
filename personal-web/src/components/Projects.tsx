@@ -2,6 +2,51 @@ import { useState } from 'react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import OptimizedImage from './OptimizedImage';
 
+// Tech icons mapping (same as About.tsx)
+const techIcons: Record<string, string> = {
+  // Programming Languages
+  "C": "https://upload.wikimedia.org/wikipedia/commons/1/18/C_Programming_Language.svg",
+  "C++": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg",
+  "C#": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg",
+  "Python": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg",
+  "JavaScript": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg",
+  "TypeScript": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg",
+  "Java": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg",
+  // Frontend
+  "React": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg",
+  "Next.js": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg",
+  "Tailwind": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg",
+  "Tailwind CSS": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg",
+  "HTML5": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg",
+  "CSS3": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg",
+  "Vite": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vitejs/vitejs-original.svg",
+  // Backend & Database
+  "Node": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg",
+  "Node.js": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg",
+  "Express": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg",
+  "Express.js": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg",
+  "PostgreSQL": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg",
+  "MongoDB": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg",
+  "Redis": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/redis/redis-original.svg",
+  "NeonDB": "https://avatars.githubusercontent.com/u/77690634?s=200&v=4",
+  "Cloudinary": "https://upload.wikimedia.org/wikipedia/commons/b/b2/Cloudinary_logo.svg",
+  // DevOps & Cloud
+  "Docker": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg",
+  "Vercel": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vercel/vercel-original.svg",
+  // Hardware & Game Dev
+  "Unity": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/unity/unity-original.svg",
+  "Arduino": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/arduino/arduino-original.svg",
+  // Generic chip icon for hardware-related
+  "VHDL": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='512' height='512' viewBox='0 0 512 512'%3E%3Cpath fill='%2300a3ff' d='M378.04 424.23H133.96c-26.104 0-47.462-21.357-47.462-47.461v-244.08c0-26.105 21.358-47.462 47.462-47.462h244.08c26.104 0 47.462 21.357 47.462 47.461v244.08c0 26.105-21.358 47.462-47.462 47.462m-39.847-253.059H177.9v160.294h160.294zM182.351 0H152.5v71.768h29.85zm59.879 0h-29.851v71.768h29.85zm59.88 0h-29.851v71.768h29.85zm59.879 0h-29.851v71.768h29.85zM73.039 329.684H0v29.851h73.04zm0-59.878H0v29.85h73.04zm0-59.88H0v29.85h73.04zm0-59.88H0v29.851h73.04zM512 329.684h-73.04v29.851H512zm0-59.878h-73.04v29.85H512zm0-59.88h-73.04v29.85H512zm0-59.88h-73.04v29.851H512zM182.35 440.232H152.5V512h29.85zm59.88 0h-29.851V512h29.85zm59.879 0h-29.851V512h29.85zm59.88 0h-29.851V512h29.85zM151.55 128.902c0-12.272-13.376-19.983-24.018-13.847c-10.643 6.135-10.643 21.557 0 27.693s24.018-1.576 24.018-13.847'/%3E%3C/svg%3E",
+  "Vivado": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='512' height='512' viewBox='0 0 512 512'%3E%3Cpath fill='%2300a3ff' d='M378.04 424.23H133.96c-26.104 0-47.462-21.357-47.462-47.461v-244.08c0-26.105 21.358-47.462 47.462-47.462h244.08c26.104 0 47.462 21.357 47.462 47.461v244.08c0 26.105-21.358 47.462-47.462 47.462m-39.847-253.059H177.9v160.294h160.294zM182.351 0H152.5v71.768h29.85zm59.879 0h-29.851v71.768h29.85zm59.88 0h-29.851v71.768h29.85zm59.879 0h-29.851v71.768h29.85zM73.039 329.684H0v29.851h73.04zm0-59.878H0v29.85h73.04zm0-59.88H0v29.85h73.04zm0-59.88H0v29.851h73.04zM512 329.684h-73.04v29.851H512zm0-59.878h-73.04v29.85H512zm0-59.88h-73.04v29.85H512zm0-59.88h-73.04v29.851H512zM182.35 440.232H152.5V512h29.85zm59.88 0h-29.851V512h29.85zm59.879 0h-29.851V512h29.85zm59.88 0h-29.851V512h29.85zM151.55 128.902c0-12.272-13.376-19.983-24.018-13.847c-10.643 6.135-10.643 21.557 0 27.693s24.018-1.576 24.018-13.847'/%3E%3C/svg%3E",
+  "FPGA": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='512' height='512' viewBox='0 0 512 512'%3E%3Cpath fill='%2300a3ff' d='M378.04 424.23H133.96c-26.104 0-47.462-21.357-47.462-47.461v-244.08c0-26.105 21.358-47.462 47.462-47.462h244.08c26.104 0 47.462 21.357 47.462 47.461v244.08c0 26.105-21.358 47.462-47.462 47.462m-39.847-253.059H177.9v160.294h160.294zM182.351 0H152.5v71.768h29.85zm59.879 0h-29.851v71.768h29.85zm59.88 0h-29.851v71.768h29.85zm59.879 0h-29.851v71.768h29.85zM73.039 329.684H0v29.851h73.04zm0-59.878H0v29.85h73.04zm0-59.88H0v29.85h73.04zm0-59.88H0v29.851h73.04zM512 329.684h-73.04v29.851H512zm0-59.878h-73.04v29.85H512zm0-59.88h-73.04v29.85H512zm0-59.88h-73.04v29.851H512zM182.35 440.232H152.5V512h29.85zm59.88 0h-29.851V512h29.85zm59.879 0h-29.851V512h29.85zm59.88 0h-29.851V512h29.85zM151.55 128.902c0-12.272-13.376-19.983-24.018-13.847c-10.643 6.135-10.643 21.557 0 27.693s24.018-1.576 24.018-13.847'/%3E%3C/svg%3E",
+  "RTOS": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='512' height='512' viewBox='0 0 512 512'%3E%3Cpath fill='%2300a3ff' d='M378.04 424.23H133.96c-26.104 0-47.462-21.357-47.462-47.461v-244.08c0-26.105 21.358-47.462 47.462-47.462h244.08c26.104 0 47.462 21.357 47.462 47.461v244.08c0 26.105-21.358 47.462-47.462 47.462m-39.847-253.059H177.9v160.294h160.294zM182.351 0H152.5v71.768h29.85zm59.879 0h-29.851v71.768h29.85zm59.88 0h-29.851v71.768h29.85zm59.879 0h-29.851v71.768h29.85zM73.039 329.684H0v29.851h73.04zm0-59.878H0v29.85h73.04zm0-59.88H0v29.85h73.04zm0-59.88H0v29.851h73.04zM512 329.684h-73.04v29.851H512zm0-59.878h-73.04v29.85H512zm0-59.88h-73.04v29.85H512zm0-59.88h-73.04v29.851H512zM182.35 440.232H152.5V512h29.85zm59.88 0h-29.851V512h29.85zm59.879 0h-29.851V512h29.85zm59.88 0h-29.851V512h29.85zM151.55 128.902c0-12.272-13.376-19.983-24.018-13.847c-10.643 6.135-10.643 21.557 0 27.693s24.018-1.576 24.018-13.847'/%3E%3C/svg%3E",
+  "AVR": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/arduino/arduino-original.svg",
+  "Assembly": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='512' height='512' viewBox='0 0 512 512'%3E%3Cpath fill='%2300a3ff' d='M378.04 424.23H133.96c-26.104 0-47.462-21.357-47.462-47.461v-244.08c0-26.105 21.358-47.462 47.462-47.462h244.08c26.104 0 47.462 21.357 47.462 47.461v244.08c0 26.105-21.358 47.462-47.462 47.462m-39.847-253.059H177.9v160.294h160.294zM182.351 0H152.5v71.768h29.85zm59.879 0h-29.851v71.768h29.85zm59.88 0h-29.851v71.768h29.85zm59.879 0h-29.851v71.768h29.85zM73.039 329.684H0v29.851h73.04zm0-59.878H0v29.85h73.04zm0-59.88H0v29.85h73.04zm0-59.88H0v29.851h73.04zM512 329.684h-73.04v29.851H512zm0-59.878h-73.04v29.85H512zm0-59.88h-73.04v29.85H512zm0-59.88h-73.04v29.851H512zM182.35 440.232H152.5V512h29.85zm59.88 0h-29.851V512h29.85zm59.879 0h-29.851V512h29.85zm59.88 0h-29.851V512h29.85zM151.55 128.902c0-12.272-13.376-19.983-24.018-13.847c-10.643 6.135-10.643 21.557 0 27.693s24.018-1.576 24.018-13.847'/%3E%3C/svg%3E",
+  "Proteus": "https://upload.wikimedia.org/wikipedia/en/5/5a/Proteus_Design_Suite_Atom_Logo.png",
+  "Proteus Professional": "https://upload.wikimedia.org/wikipedia/en/5/5a/Proteus_Design_Suite_Atom_Logo.png",
+};
+
 interface Project {
   title: string;
   description: string[];
@@ -19,7 +64,6 @@ export default function Projects() {
   const [slideDirection, setSlideDirection] = useState<'left' | 'right'>('right');
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isImageTransitioning, setIsImageTransitioning] = useState(false);
-  const [imageSlideDirection, setImageSlideDirection] = useState<'left' | 'right'>('right');
 
   const projects: Project[] = [
     {
@@ -160,7 +204,6 @@ export default function Projects() {
 
     const currentProject = projects[activeProjectIndex];
     setIsImageTransitioning(true);
-    setImageSlideDirection(direction === 'next' ? 'left' : 'right');
 
     setTimeout(() => {
       if (direction === 'next') {
@@ -237,8 +280,8 @@ export default function Projects() {
                     }
                   }}
                   className={`h-2 rounded-full transition-all duration-500 cursor-pointer ${idx === activeProjectIndex
-                      ? 'w-8 bg-blue-600 dark:bg-blue-400'
-                      : 'w-2 bg-gray-400 dark:bg-gray-600 hover:bg-blue-400 dark:hover:bg-gray-400'
+                    ? 'w-8 bg-blue-600 dark:bg-blue-400'
+                    : 'w-2 bg-gray-400 dark:bg-gray-600 hover:bg-blue-400 dark:hover:bg-gray-400'
                     }`}
                 />
               ))}
@@ -264,10 +307,10 @@ export default function Projects() {
             }`}
         >
           <div className={`transition-all duration-300 ${isTransitioning
-              ? slideDirection === 'left'
-                ? 'opacity-0 -translate-x-20'
-                : 'opacity-0 translate-x-20'
-              : 'opacity-100 translate-x-0'
+            ? slideDirection === 'left'
+              ? 'opacity-0 -translate-x-20'
+              : 'opacity-0 translate-x-20'
+            : 'opacity-100 translate-x-0'
             }`}>
             {/* Split Layout - Details Left, Image Right */}
             <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 items-center">
@@ -336,13 +379,20 @@ export default function Projects() {
                   </div>
                 )}
 
-                {/* Tech Stack */}
+                {/* Tech Stack with Icons */}
                 <div className="flex flex-wrap gap-1.5 sm:gap-2">
                   {currentProject.tags.map((tag, tagIdx) => (
                     <span
                       key={tagIdx}
-                      className="px-2 sm:px-4 py-1 sm:py-2 bg-gray-200 dark:bg-gray-800/50 text-blue-600 dark:text-blue-400 text-xs sm:text-sm font-medium rounded-lg border border-gray-300 dark:border-gray-700 transition-all duration-500 hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-gray-800 hover:shadow-md hover:shadow-blue-500/30 hover:scale-105 cursor-default"
+                      className="inline-flex items-center gap-1.5 px-2 sm:px-3 py-1 sm:py-1.5 bg-gray-200 dark:bg-gray-800/50 text-blue-600 dark:text-blue-400 text-xs sm:text-sm font-medium rounded-lg border border-gray-300 dark:border-gray-700 transition-all duration-500 hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-gray-800 hover:shadow-md hover:shadow-blue-500/30 hover:scale-105 cursor-default"
                     >
+                      {techIcons[tag] && (
+                        <img
+                          src={techIcons[tag]}
+                          alt={tag}
+                          className="w-4 h-4 sm:w-5 sm:h-5 object-contain"
+                        />
+                      )}
                       {tag}
                     </span>
                   ))}
@@ -355,8 +405,8 @@ export default function Projects() {
               {/* Right Side - Skewed Image with Neon Backlight */}
               <div className="relative order-1 lg:order-2 perspective-1000">
                 {/* Pure Blue Neon Backlight Glow - matching other pages */}
-                <div className="absolute -inset-8 bg-neon-blue-500/20 blur-3xl opacity-60 rounded-full hidden lg:block" />
-                <div className="absolute -inset-6 bg-neon-blue-400/15 blur-2xl opacity-50 rounded-full animate-pulse-slow hidden lg:block" />
+                <div className="absolute -inset-8 bg-neon-blue-500/20 blur-3xl opacity-60 rounded-full hidden lg:block pointer-events-none" />
+                <div className="absolute -inset-6 bg-neon-blue-400/15 blur-2xl opacity-50 rounded-full animate-pulse-slow hidden lg:block pointer-events-none" />
 
                 {/* Skewed Image Container - skew disabled on mobile */}
                 <div
@@ -367,13 +417,11 @@ export default function Projects() {
                   }}
                 >
                   <div className="relative rounded-2xl overflow-hidden border-2 border-neon-blue/60 shadow-2xl shadow-neon-blue/40 transition-all duration-500 group-hover:shadow-neon-blue/80 group-hover:border-neon-blue group-hover:-translate-y-2 bg-gray-950">
-                    {/* Image with slide animation */}
+                    {/* Image with crossfade animation */}
                     <div className="relative overflow-hidden">
-                      <div className={`transition-all duration-300 ${isImageTransitioning
-                          ? imageSlideDirection === 'left'
-                            ? 'opacity-0 -translate-x-full'
-                            : 'opacity-0 translate-x-full'
-                          : 'opacity-100 translate-x-0'
+                      <div className={`transition-all duration-400 ease-out ${isImageTransitioning
+                        ? 'opacity-0 scale-[1.02]'
+                        : 'opacity-100 scale-100'
                         }`}>
                         <OptimizedImage
                           src={currentProject.images[activeImageIndex]}
@@ -398,14 +446,14 @@ export default function Projects() {
                   </div>
 
                   {/* Corner accents - static */}
-                  <div className="absolute -top-2 -right-2 w-32 h-32 bg-neon-blue/10 blur-2xl rounded-full" />
-                  <div className="absolute -bottom-2 -left-2 w-32 h-32 bg-neon-blue/5 blur-2xl rounded-full" />
+                  <div className="absolute -top-2 -right-2 w-32 h-32 bg-neon-blue/10 blur-2xl rounded-full pointer-events-none" />
+                  <div className="absolute -bottom-2 -left-2 w-32 h-32 bg-neon-blue/5 blur-2xl rounded-full pointer-events-none" />
                 </div>
 
                 {/* Image Navigation - Below and Skewed */}
                 {currentProject.images.length > 1 && (
                   <div
-                    className="mt-4 sm:mt-6 flex gap-2 sm:gap-3 justify-center"
+                    className="mt-4 sm:mt-6 flex gap-2 sm:gap-3 justify-center relative z-10"
                     style={{
                       transform: window.innerWidth >= 1024 ? 'perspective(1200px) rotateY(-8deg) rotateX(2deg)' : 'none',
                       transformStyle: 'preserve-3d'
@@ -428,7 +476,6 @@ export default function Projects() {
                           onClick={(e) => {
                             e.stopPropagation();
                             if (!isImageTransitioning && imgIdx !== activeImageIndex) {
-                              setImageSlideDirection(imgIdx > activeImageIndex ? 'left' : 'right');
                               setIsImageTransitioning(true);
                               setTimeout(() => {
                                 setActiveImageIndex(imgIdx);
@@ -437,8 +484,8 @@ export default function Projects() {
                             }
                           }}
                           className={`h-2 sm:h-2.5 rounded-full transition-all duration-500 ${imgIdx === activeImageIndex
-                              ? 'w-8 sm:w-10 bg-blue-600 dark:bg-blue-400 shadow-lg shadow-blue-500/50'
-                              : 'w-2 sm:w-2.5 bg-gray-400 dark:bg-gray-500 hover:bg-blue-400 dark:hover:bg-blue-500/50'
+                            ? 'w-8 sm:w-10 bg-blue-600 dark:bg-blue-400 shadow-lg shadow-blue-500/50'
+                            : 'w-2 sm:w-2.5 bg-gray-400 dark:bg-gray-500 hover:bg-blue-400 dark:hover:bg-blue-500/50'
                             }`}
                         />
                       ))}
