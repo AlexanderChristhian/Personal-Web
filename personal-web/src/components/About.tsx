@@ -33,8 +33,10 @@ function About() {
     "Backend & Database": [
       { name: "Node.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" },
       { name: "Express.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg" },
+      { name: "FastAPI", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg" },
       { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" },
       { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg" },
+      { name: "ChromaDB", icon: "https://avatars.githubusercontent.com/u/117967014?s=200&v=4" },
       { name: "Redis", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/redis/redis-original.svg" },
       { name: "NeonDB", icon: "https://avatars.githubusercontent.com/u/77690634?s=200&v=4" },
       { name: "Cloudinary", icon: "https://upload.wikimedia.org/wikipedia/commons/b/b2/Cloudinary_logo.svg" },

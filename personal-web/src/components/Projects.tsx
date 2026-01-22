@@ -33,6 +33,11 @@ const techIcons: Record<string, string> = {
   // DevOps & Cloud
   "Docker": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg",
   "Vercel": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vercel/vercel-original.svg",
+  // AI & ML
+  "FastAPI": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg",
+  "ChromaDB": "https://avatars.githubusercontent.com/u/117967014?s=200&v=4",
+  "Groq": "https://cdn.prod.website-files.com/6679431de6a5c731bb2a6624/66db77eb89e4a4e37e8eca26_Groq%20Logo%20Icon%20-%20Landscape%20-%20White.svg",
+  "RAG": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg",
   // Hardware & Game Dev
   "Unity": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/unity/unity-original.svg",
   "Arduino": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/arduino/arduino-original.svg",
@@ -66,6 +71,26 @@ export default function Projects() {
   const [isImageTransitioning, setIsImageTransitioning] = useState(false);
 
   const projects: Project[] = [
+    {
+      title: "PIP FTUI RAG System",
+      description: [
+        "AI-powered academic document assistant for FTUI students",
+        "RAG architecture with semantic search using ChromaDB & SentenceTransformer",
+        "Real-time streaming chat with Groq LLM (Llama 3.1 70B)"
+      ],
+      tags: ["Python", "FastAPI", "Next.js", "TypeScript", "ChromaDB", "Tailwind CSS"],
+      images: [
+        "/Projects/PIP FTUI/PIP_FTUI_1.png",
+        "/Projects/PIP FTUI/PIP_FTUI_2.png",
+        "/Projects/PIP FTUI/PIP_FTUI_3.png",
+        "/Projects/PIP FTUI/PIP_FTUI_4.png"
+      ],
+      collaborators: [
+        { name: "DAFFAsd", github: "https://github.com/DAFFAsd" },
+        { name: "vinend", github: "https://github.com/vinend" }
+      ],
+      featured: true
+    },
     {
       title: "The Game Library",
       description: [
